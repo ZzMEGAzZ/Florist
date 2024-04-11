@@ -52,6 +52,46 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        Gray: {
+          light: '#E5E5E5',
+          DEFAULT: '#B2B2B2',
+          dark: '#3A3A3A',
+      },
+        Danger: {
+          DEFAULT: "#ff0000",
+          light: "#ffcccc",
+          dark: "#990000",
+        },
+        Warning: {
+          DEFAULT: "#ffcc00",
+          light: "#ffebcc",
+          dark: "#997300",
+        },
+        Success: {
+          DEFAULT: "#00cc00",
+          light: "#ccffcc",
+          dark: "#007700",
+        },
+        SubPrimary: {
+          DEFAULT: "#FF55BB",
+          light: "#FFBBEE",
+          dark: "#CC3399",
+        },
+        SubSecondary: {
+          DEFAULT: "#FFD3A3",
+          light: "#FFE6CC",
+          dark: "#CCAA73",
+        },
+        SubTretiary: {
+          DEFAULT: "#FCFFB2",
+          light: "#FFFFCC",
+          dark: "#CCCC73",
+        },
+        SubQuaternary: {
+          DEFAULT: "#B6EAFA",
+          light: "#CCF3FF",
+          dark: "#73BBD6",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -71,6 +111,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "animated": "animate",
       },
       fontSize: {
         xs: 'clamp(0.4rem, 0.2rem + 0.2vw, 0.75rem)',
