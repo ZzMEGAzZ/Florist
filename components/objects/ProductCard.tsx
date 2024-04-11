@@ -73,14 +73,14 @@ export function ProductCard({ product }: props) {
                             }
                             {
                                 product.hot && (
-                                    <Middle X Y className="absolute top-2 right-2 bg-primary text-white w-10 h-10 rounded-full">
+                                    <Middle X Y className="absolute top-4 right-4 bg-primary text-white w-10 h-10 rounded-full">
                                         hot
                                     </Middle>
                                 )
                             }
                             {
                                 product.sale && (
-                                    <Middle X Y className="absolute top-2 right-2 bg-primary text-md text-white w-10 h-10 rounded-full">
+                                    <Middle X Y className="absolute top-4 right-4 bg-primary text-md text-white w-10 h-10 rounded-full">
                                         - {product.sale}%
                                     </Middle>
                                 )

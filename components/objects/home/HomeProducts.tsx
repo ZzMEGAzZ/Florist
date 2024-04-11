@@ -38,18 +38,21 @@ const productArray: ProductCard[] = [
         name: 'Product 6',
         description: 'Description',
         price: 6000,
+        hot: true
     },
     {
         img: 'https://via.placeholder.com/150',
         name: 'Product 7',
         description: 'Description',
         price: 6000,
+        new: true
     },
     {
         img: 'https://via.placeholder.com/150',
         name: 'Product 8',
         description: 'Description',
         price: 6000,
+        sale: 15
     },
 ]
 
