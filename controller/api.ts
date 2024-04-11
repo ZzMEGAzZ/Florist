@@ -1,14 +1,14 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { AuthProvider } from '@/utils/clientAuthProvider';
-import verifyToken from '@/utils/verifyToken';
+// import { AuthProvider } from '@/utils/clientAuthProvider';
+// import verifyToken from '@/utils/verifyToken';
 
 function getRequestConfig(method: string, url: string, data?: any, token?: 'useToken'): AxiosRequestConfig {
-    const Access_Token = AuthProvider.getAccessToken();
-    const RefreshToken = AuthProvider.getRefreshToken();
+    // const Access_Token = AuthProvider.getAccessToken();
+    // const RefreshToken = AuthProvider.getRefreshToken();
 
-    if (token === 'useToken' && !Access_Token) {
-        verifyToken(Access_Token as string);
-    }
+    // if (token === 'useToken' && !Access_Token) {
+    //     verifyToken(Access_Token as string);
+    // }
 
     const headers: { [key: string]: string } = {
         'Content-Type': 'multipart/form-data',
@@ -16,9 +16,9 @@ function getRequestConfig(method: string, url: string, data?: any, token?: 'useT
         'X-Requested-With': 'XMLHttpRequest',
     };
 
-    if (token) {
-        headers.token = `${Access_Token}`;
-    }
+    // if (token) {
+    //     headers.token = `${Access_Token}`;
+    // }
 
     return {
         method,

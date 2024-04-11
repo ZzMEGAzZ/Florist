@@ -1,2 +1,11 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Build a new image from the base image
+.next/
+
+# Ignore the build directory
+build/
+
+# Ignore the coverage directory
+.yarn
