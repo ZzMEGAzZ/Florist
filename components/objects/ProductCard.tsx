@@ -39,7 +39,7 @@ export function ProductCard({ product }: props) {
         <>
             <div className="relative">
 
-                <Card className={`${hover ? 'opacity-100 z-20' : 'opacity-0 -z-10  animate'} absolute top-0 left-0 w-[240px] h-full bg-black bg-opacity-70 cursor-pointer`}
+                <Card className={`${hover ? 'opacity-100 z-20' : 'opacity-0 -z-10  animate'} absolute top-0 left-0 w-[160px] sm:w-[200px] md:w-[240px] 2xl:w-[360px] h-full bg-black bg-opacity-70 cursor-pointer`}
                     onMouseLeave={() => setHover(false)}
                 >
                     <CardContent className="w-full h-full">
@@ -58,11 +58,11 @@ export function ProductCard({ product }: props) {
                     </CardContent>
                 </Card>
 
-                <Card className="w-[240px] cursor-pointer shadow-lg"
+                <Card className="w-[160px] sm:w-[200px] md:w-[240px] 2xl:w-[360px] cursor-pointer shadow-lg"
                     onClick={() => setHover(true)}
                 >
                     <div className="relative overflow-hidden">
-                        <Image src="https://via.placeholder.com/150" alt="Project" width={240} height={240} className="rounded-t-sm hover:scale-110 animate" />
+                        <Image src="https://via.placeholder.com/150" alt="Project" width={480} height={480} className="rounded-t-sm hover:scale-110 animate" />
                         <div className="z-10">
                             {
                                 product.new && (

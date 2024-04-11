@@ -1,6 +1,7 @@
 import Middle from "@/components/layouts/Middle";
 import Span from "@/components/layouts/Span";
 import { ProductCard } from "../ProductCard";
+import { Button } from "@/components/ui/button";
 
 const productArray: ProductCard[] = [
     {
@@ -59,15 +60,15 @@ const productArray: ProductCard[] = [
 
 export default function HomeProducts() {
     return (
-        <>
-            <Middle X Y className="w-full h-full">
+        <div className="w-full h-full">
+            <div className="flex flex-col w-full h-full space-y-4 items-center">
                 <Span Y className="w-full h-full space-y-4">
                     <Span Y className="w-full h-full justify-center items-center">
                         <h2 className="text-2xl font-bold">
                             Our Products
                         </h2>
                     </Span>
-                    <Span X className="w-full h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <Span X className="relative w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8 justify-items-center">
                         {
                             productArray.map((product, index) => (
                                 <ProductCard key={index} product={product} />
@@ -75,7 +76,8 @@ export default function HomeProducts() {
                         }
                     </Span>
                 </Span>
-            </Middle>
-        </>
+                <Button className='w-40'>Show More</Button>
+            </div>
+        </div>
     )
 }

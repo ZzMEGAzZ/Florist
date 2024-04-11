@@ -18,7 +18,6 @@ export default function Home() {
                     <div className='w-full h-full px-8 space-y-8 mt-8 flex flex-col items-center'>
                         <HomeProductCategory />
                         <HomeProducts />
-                        <Button className='w-40'>Show More</Button>
                     </div>
                     <ModeToggle />
                 </div>
