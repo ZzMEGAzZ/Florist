@@ -1438,12 +1438,12 @@ __metadata:
   linkType: hard
 
 "@types/react@npm:*, @types/react@npm:^18":
-  version: 18.2.75
-  resolution: "@types/react@npm:18.2.75"
+  version: 18.2.74
+  resolution: "@types/react@npm:18.2.74"
   dependencies:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10c0/3c0d035d64007d38cf1b682108de8c5f042452025899280c5d2c040b9f53b1f81482d0d57fd93e6687c2c619f3b605d33a01569b1fbbbdeec7fb3a56c7a72af8
+  checksum: 10c0/347e38b4c5dc20d50ff71bf04b7caaef490e5ff695e74a0088a13fbb2a0c5d125a5ecfd142adfa30f0176da0e2734942c91ba61d95ce269c43b3265bd7379361
   languageName: node
   linkType: hard
 
@@ -1530,9 +1530,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001579, caniuse-lite@npm:^1.0.30001587, caniuse-lite@npm:^1.0.30001599":
-  version: 1.0.30001608
-  resolution: "caniuse-lite@npm:1.0.30001608"
-  checksum: 10c0/eb77c78fb5b0f75b0fdfcc7c40b9d7d11aeb9514091347b42dda4c13c81d14579495939e8ee00572b4ce6af21b3ab4b8ceb68c43f0caf8a2c478f3dcc085e74a
+  version: 1.0.30001605
+  resolution: "caniuse-lite@npm:1.0.30001605"
+  checksum: 10c0/ceb96a0ecfdaee6510c00aebaaa63db20aaeafab03450d4e3b214e009cb632f87385a70c299cdd1ca4c17e1473883d8fa2051c5b2d083a454338c0c779b25cbc
   languageName: node
   linkType: hard
 
@@ -1688,37 +1688,37 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.668":
-  version: 1.4.733
-  resolution: "electron-to-chromium@npm:1.4.733"
-  checksum: 10c0/729e79256748102180a74d997efafb8377f100a8e087aef99175ec6ee298aa715fa41f6a869af906adaefb7fcba43f898c42f721c9ea8980c13744d2ef7ea1b2
+  version: 1.4.726
+  resolution: "electron-to-chromium@npm:1.4.726"
+  checksum: 10c0/f98a0e0686534aa8d7baf425d991a89ef7d8d3b856a8dfc786fdc47e8e57715440877e67bcda31d486aa7f73350718502d0de839229ac84624ee360829f3b201
   languageName: node
   linkType: hard
 
 "embla-carousel-react@npm:^8.0.1":
-  version: 8.0.2
-  resolution: "embla-carousel-react@npm:8.0.2"
+  version: 8.0.1
+  resolution: "embla-carousel-react@npm:8.0.1"
   dependencies:
-    embla-carousel: "npm:8.0.2"
-    embla-carousel-reactive-utils: "npm:8.0.2"
+    embla-carousel: "npm:8.0.1"
+    embla-carousel-reactive-utils: "npm:8.0.1"
   peerDependencies:
     react: ^16.8.0 || ^17.0.1 || ^18.0.0
-  checksum: 10c0/7e45266d4251a960515a3283e65454b61e54d6f400f2dee7f56a3ac50532f7ce4735d926494cb1570d81de4bf299c3d1417ab4e64467cda139a7f60b49583757
+  checksum: 10c0/a16af76be911133f00ff38491b0ed12f09571949234b22bfe83cbd2d8b0d3cf43b666ffc4fc6aaf17e04691495fdad69fc1bc33db3eeec9ba7f67fe8db056a25
   languageName: node
   linkType: hard
 
-"embla-carousel-reactive-utils@npm:8.0.2":
-  version: 8.0.2
-  resolution: "embla-carousel-reactive-utils@npm:8.0.2"
+"embla-carousel-reactive-utils@npm:8.0.1":
+  version: 8.0.1
+  resolution: "embla-carousel-reactive-utils@npm:8.0.1"
   peerDependencies:
-    embla-carousel: 8.0.2
-  checksum: 10c0/e7e81916971008642700af0b96a59117324214c020759a53feb1d96edb34649329018777dc00b87c631c9d04efd544945f5914dc3cbd5289766a6cdcea253f4e
+    embla-carousel: 8.0.1
+  checksum: 10c0/c511dbbcd869f11f102e826aea600f1668f8097792b4e185678f44240466fe6a224b68833c408bd9eb6c9b26e40321b6f18f70f45bd19df3cd403d964e1fba95
   languageName: node
   linkType: hard
 
-"embla-carousel@npm:8.0.2":
-  version: 8.0.2
-  resolution: "embla-carousel@npm:8.0.2"
-  checksum: 10c0/e63ce4e387c0e227ce211a1131f81c74dbe6c4bb32a5d072e0c1e30774305ca9a30fc86ebb042707bf8d6ec8cb57575628dfa1b18b36dd3206d4774cd34b73bc
+"embla-carousel@npm:8.0.1":
+  version: 8.0.1
+  resolution: "embla-carousel@npm:8.0.1"
+  checksum: 10c0/9ce30759a77e75ff4ce490102c429794fd46f03bbcc4a6af4ecefbe55a5de5289b7ac0f7607d1774a9b23c241d5781bf3d45459590768b15679a9da5b56ef6df
   languageName: node
   linkType: hard
 
