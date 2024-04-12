@@ -97,9 +97,9 @@ export default function NavigationBar() {
                 </div>
                 <NavigationMenuList className="w-full h-full">
                     <NavigationMenuItem className="w-full text-center text-card-foreground">
-                        <Link href="/" passHref>
+                        <a href="/">
                             <NavigationMenuLink>Home</NavigationMenuLink>
-                        </Link>
+                        </a>
                     </NavigationMenuItem>
                     <NavigationMenuItem className="w-full text-center text-card-foreground">
                         <NavigationMenuTrigger className="w-full">Product</NavigationMenuTrigger>
@@ -125,19 +125,27 @@ export default function NavigationBar() {
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem className="w-full text-center text-card-foreground">
-                        <Link href="/about" passHref>
+                        <a href="/about">
                             <NavigationMenuLink>About</NavigationMenuLink>
-                        </Link>
+                        </a>
                     </NavigationMenuItem>
                     <NavigationMenuItem className="w-full text-center text-card-foreground">
-                        <Link href="/contact" passHref>
+                        <a href="/contact">
                             <NavigationMenuLink>Contact</NavigationMenuLink>
-                        </Link>
+                        </a>
                     </NavigationMenuItem>
                 </NavigationMenuList>
                 <div className="w-full flex items-center justify-end space-x-8">
-                    <div className="text-card-foreground">Login</div>
-                    <div className="text-card-foreground">Register</div>
+                    <div className="text-card-foreground">
+                        <a href="/login">
+                            Login
+                        </a>
+                    </div>
+                    <div className="text-card-foreground">
+                        <a href="/register">
+                            Register
+                        </a>
+                    </div>
                     <ModeToggle />
                 </div>
             </div>

@@ -46,24 +46,26 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <header className="fixed z-[999] w-full min-h-[70px]">
+
+              <header className="fixed z-[999] w-full min-h-[70px]">
                 <NavigationBar />
-            </header>
+              </header>
 
-            <main className={`w-full pt-[70px] min-h-[100dvh] h-max`}>
-              <div className="min-h-[100dvh] h-full w-full">
-                <div className="w-full min-h-[100dvh] h-full">{children}</div>
-              </div>
-            </main>
+              <main className={`w-full pt-[70px] min-h-[100dvh] h-max`}>
+                <div className="min-h-[100dvh] h-full w-full">
+                  <div className="w-full min-h-[100dvh] h-full">{children}</div>
+                </div>
+              </main>
 
-            <footer className="z-[999] w-full h-max bg-card border-t mt-4">
-              <div className="w-full h-full px-16">
-                <FooterBody />
-                <div className="w-full h-0.5 bg-muted-foreground"></div>
-                <Footertail />
-              </div>
-                
-            </footer>
+              <footer className="z-[999] w-full h-max bg-card border-t mt-4">
+                <div className="w-full h-full px-16">
+                  <FooterBody />
+                  <div className="w-full h-0.5 bg-muted-foreground"></div>
+                  <Footertail />
+                </div>
+              </footer>
+
+
           </ThemeProvider>
         </StoreProvider>
       </body>

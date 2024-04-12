@@ -7,8 +7,7 @@ import HomeProducts from '@/components/objects/home/HomeProducts';
 import { ProductCard } from '@/components/objects/ProductCard';
 import { ModeToggle } from '@/components/interactive/ModeToggle';
 import { Button } from '@/components/ui/button';
-export default function Home() {
-
+export default function HomePage() {
 
     return (
         <>

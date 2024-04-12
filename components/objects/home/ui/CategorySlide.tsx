@@ -21,7 +21,7 @@ export default function CategorySlide({ category }: Props) {
                     {
                         Array.from({ length: category.length }).map((_, index) => (
                             <div key={index} className="w-40 h-60 mr-4 cursor-pointer drop-shadow-lg">
-                                <Link href={category[index].link}>
+                                <a href={category[index].link}>
                                     <div className="w-40 h-52 rounded-lg">
 
                                         <Image src={category[index].img} alt={category[index].title}
@@ -33,7 +33,7 @@ export default function CategorySlide({ category }: Props) {
                                     <h3 className="text-md text-foreground font-bold text-center mt-2">
                                         {category[index].title}
                                     </h3>
-                                </Link>
+                                </a>
                             </div>
                         ))
                     }
