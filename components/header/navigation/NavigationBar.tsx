@@ -117,7 +117,6 @@ export default function NavigationBar() {
                                             href={component.href}
                                         >
                                             {component.description}
-                                            {component.img}
                                         </ListItem>
                                     </div>
 
