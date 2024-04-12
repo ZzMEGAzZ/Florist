@@ -76,6 +76,7 @@ const config = {
           DEFAULT: "#FF55BB",
           light: "#FFBBEE",
           dark: "#CC3399",
+          primary: "#290F1E",
         },
         SubSecondary: {
           DEFAULT: "#FFD3A3",

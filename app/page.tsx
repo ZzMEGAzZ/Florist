@@ -19,9 +19,7 @@ export default function Home() {
                         <HomeProductCategory />
                         <HomeProducts />
                     </div>
-                    <ModeToggle />
-                </div>
-                
+                </div>           
             </Middle>
         </>
     );

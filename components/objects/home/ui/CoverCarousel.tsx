@@ -47,8 +47,8 @@ export default function CoverCarousel({ cover }: Props) {
             <Carousel className="w-full"
                 plugins={[Autoplay({
                     delay: 5000,
-                    stopOnMouseEnter: true,
-                    isPlaying: !mouse,
+                    stop: mouse,
+                    reset: !mouse,
                 })]}
                 setApi={setCarouselApi}
             >

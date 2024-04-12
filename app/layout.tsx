@@ -3,6 +3,9 @@ import { Kanit } from "next/font/google";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import StoreProvider from "@/redux/store-provider";
+import Footertail from "@/components/footer/footer/FooterTail";
+import FooterBody from "@/components/footer/footer/FooterBody";
+import NavigationBar from "@/components/header/navigation/NavigationBar";
 
 const kanit = Kanit({
   subsets: ["latin", "thai"],
@@ -43,16 +46,23 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <header></header>
+            <header className="fixed z-[999] w-full min-h-[70px]">
+                <NavigationBar />
+            </header>
 
-            <main className={`w-full min-h-[95dvh] h-max`}>
-              <div className="min-h-[95dvh] h-full w-full">
-                <div className="w-full min-h-[95dvh] h-full">{children}</div>
+            <main className={`w-full pt-[70px] min-h-[100dvh] h-max`}>
+              <div className="min-h-[100dvh] h-full w-full">
+                <div className="w-full min-h-[100dvh] h-full">{children}</div>
               </div>
             </main>
 
-            <footer className="z-[999] w-full h-[5dvh]">
-
+            <footer className="z-[999] w-full h-max bg-card border-t mt-4">
+              <div className="w-full h-full px-16">
+                <FooterBody />
+                <div className="w-full h-0.5 bg-muted-foreground"></div>
+                <Footertail />
+              </div>
+                
             </footer>
           </ThemeProvider>
         </StoreProvider>
