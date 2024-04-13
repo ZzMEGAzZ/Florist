@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import coverImg from '@/assets/image/cover.jpeg';
+import coverImg from '@/assets/images/cover.jpeg';
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {

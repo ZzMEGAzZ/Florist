@@ -8,6 +8,9 @@
     --background: 30.00 100.00% 96.47%;
     --foreground: 33.33 21.95% 8.04%;
 
+    --sub-background: 0.00 0.00% 100.00%;
+    --sub-foreground: 321.18 51.52% 6.47%;
+
     --card: 0.00 0.00% 100.00%;
     --card-foreground: 321.18 51.52% 6.47%;
 
@@ -39,6 +42,9 @@
   .dark {
     --background: 325.71 53.85% 2.55%;
     --foreground: 324.00 100.00% 95.10%;
+    
+    --sub-background: 325.71 53.85% 2.55%;
+    --sub-foreground: 324.00 100.00% 95.10%;
 
     --primary: 324.00 100.00% 66.67%;
     --primary-foreground: 0.00 0.00% 100.00%;
@@ -77,7 +83,8 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    /* @apply bg-background text-foreground; */
+    @apply bg-subBackground text-foreground;
   }
 
 }

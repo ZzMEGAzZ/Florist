@@ -7,7 +7,8 @@ export default function CategoryItemPage() {
     
     return (
         <>
-            {params.category} - {params.item}
+            <h1>{params.category}</h1>
+            <h2>{params.item}</h2>
         </>
     )
 }

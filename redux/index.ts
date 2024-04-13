@@ -1,6 +1,7 @@
 import { configureStore, combineReducers, ThunkAction, Action } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import localStorage from 'redux-persist/es/storage';
 
 // modules
 import exampleReducer from './modules/example/exampleSlice';
@@ -9,7 +10,7 @@ import exampleReducer from './modules/example/exampleSlice';
 // config
 const persistConfig = {
     key: 'root',
-    storage,
+    storage: storage,
 };
 
 export const rootReducer: any = combineReducers({
