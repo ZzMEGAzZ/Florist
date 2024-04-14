@@ -5,10 +5,11 @@
 
 @layer base {
   :root {
-    --background: 30.00 100.00% 96.47%;
+    
+    --background: 0.00 0.00% 100.00%;
     --foreground: 33.33 21.95% 8.04%;
 
-    --sub-background: 0.00 0.00% 100.00%;
+    --sub-background: 30.00 100.00% 96.47%;
     --sub-foreground: 321.18 51.52% 6.47%;
 
     --card: 0.00 0.00% 100.00%;
@@ -40,6 +41,7 @@
   }
 
   .dark {
+    
     --background: 325.71 53.85% 2.55%;
     --foreground: 324.00 100.00% 95.10%;
     
@@ -84,7 +86,7 @@
 
   body {
     /* @apply bg-background text-foreground; */
-    @apply bg-subBackground text-foreground;
+    @apply bg-background text-foreground;
   }
 
 }

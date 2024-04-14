@@ -45,6 +45,12 @@ export default function CoverCarousel({ cover }: Props) {
     return (
         <>
             <Carousel className="w-full"
+                opts={
+                    {
+                        align: "start",
+                        loop: true,
+                    }
+                }
                 plugins={[Autoplay({
                     delay: 5000,
                     stop: mouse,

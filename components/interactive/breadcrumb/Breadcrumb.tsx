@@ -25,13 +25,13 @@ export interface BreadCrumb {
 export default function BreadcrumbComponent({ breadCrumb }: { breadCrumb: BreadCrumb[] }) {
     return (
         <Breadcrumb>
-            <BreadcrumbList>
+            <BreadcrumbList className="text-foreground">
                 {breadCrumb.map((item, index) => (
                     <BreadcrumbItem key={index}>
                         {index > 0 && <BreadcrumbSeparator />}
                         <BreadcrumbLink href
                             ={item.link}
-                            className={item.current ? "text-card-foreground cursor-default" : ""}
+                            className={item.current ? "text-card-foreground cursor-default" : "opacity-70"}
                         >{item.name}</BreadcrumbLink>
                         {item.subPage && (
                             <DropdownMenu>

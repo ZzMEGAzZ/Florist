@@ -16,7 +16,7 @@ type Props = {
 export default function CategorySlide({ category }: Props) {
     return (
         <>
-            <Middle X Y className="w-full h-full">
+            <Middle X Y className="w-full h-full bg-subBackground">
                 <Span X className="w-[90dvw] py-6 overflow-x-auto scroll-smooth">
                     {
                         Array.from({ length: category.length }).map((_, index) => (

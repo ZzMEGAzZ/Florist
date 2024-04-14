@@ -3,9 +3,9 @@ import { Kanit } from "next/font/google";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import StoreProvider from "@/redux/store-provider";
-import Footertail from "@/components/footer/footer/FooterTail";
-import FooterBody from "@/components/footer/footer/FooterBody";
-import NavigationBar from "@/components/header/navigation/NavigationBar";
+import Footertail from "@/components/objects/footer/Footertail";
+import FooterBody from "@/components/objects/footer/FooterBody";
+import NavigationBar from "@/components/objects/header/navigation/NavigationBar";
 
 const kanit = Kanit({
   subsets: ["latin", "thai"],
@@ -57,10 +57,10 @@ export default function RootLayout({
                 </div>
               </main>
 
-              <footer className="z-[999] w-full h-max bg-card border-t mt-4">
+              <footer className="z-[999] w-full h-max bg-card border-t mt-20">
                 <div className="w-full h-full px-16">
                   <FooterBody />
-                  <div className="w-full h-0.5 bg-muted-foreground"></div>
+                  <div className="w-full h-0.5 bg-muted-foreground opacity-20"></div>
                   <Footertail />
                 </div>
               </footer>
