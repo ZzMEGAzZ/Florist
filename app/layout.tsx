@@ -3,7 +3,7 @@ import { Kanit } from "next/font/google";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import StoreProvider from "@/redux/store-provider";
-import Footertail from "@/components/objects/footer/Footertail";
+import Footertail from "@/components/objects/footer/FooterTail";
 import FooterBody from "@/components/objects/footer/FooterBody";
 import NavigationBar from "@/components/objects/header/navigation/NavigationBar";
 
