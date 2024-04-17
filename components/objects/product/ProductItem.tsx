@@ -47,10 +47,10 @@ export default function ProductItem({ data }: Props) {
     }
 
     return (
-        <>
-            <div className="max-w-[1440px] grid grid-cols-1 md:grid-cols-2 p-8 gap-4">
+        <div>
+            <div className="max-w-[1440px] h-full grid grid-cols-1 md:grid-cols-2 p-8 gap-4">
                 <ProductItemCarousel img={data.img} />
-                <div className="w-full">
+                <div className="w-full h-full">
                     <ItemDetail data={data} />
                     <div className="flex gap-4">
                         <Quantity quantity={quantity} setQuantity={(quantity) => handleSetQuantity(quantity)} />
@@ -64,6 +64,6 @@ export default function ProductItem({ data }: Props) {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

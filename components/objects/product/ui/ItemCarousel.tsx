@@ -40,7 +40,7 @@ export default function ProductItemCarousel({ img }: Props) {
             <Middle X Y className="w-full h-full p-2">
                 <div className="flex items-center w-full h-full gap-2">
                     <div className="w-1/4">
-                        <Carousel className="w-full my-14"
+                        <Carousel className="w-full h-full"
                             opts={{
                                 align: "start",
                                 loop: true,
