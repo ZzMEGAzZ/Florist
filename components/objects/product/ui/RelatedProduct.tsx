@@ -9,7 +9,7 @@ type Props = {
 export default function RelatedProduct({ productArray }: Props) {
     return (
         <>
-            <div className="w-full h-full px-12">
+            <div className="w-full h-full px-8">
                 <Span Y className="w-full h-full space-y-4">
                     <Middle X Y className="w-full h-full">
                         <h2 className="text-2xl">Related Products</h2>
