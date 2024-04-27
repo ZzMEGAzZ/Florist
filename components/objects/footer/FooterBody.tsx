@@ -1,9 +1,13 @@
 import Middle from '@/components/layouts/Middle'
 import Link from 'next/link';
 
+
 export default function FooterBody() {
+
+
     return (
         <>
+
             <Middle Y className="relative w-full min-h-[200px] h-max py-4 bg-card text-md text-foreground">
                 <div className='w-full h-full grid grid-cols-1 md:grid-cols-6 gap-8'>
                     <div className='col-span-full md:col-span-2 h-full'>
@@ -65,7 +69,9 @@ export default function FooterBody() {
                         </div>
                     </div>
                 </div>
+
             </Middle>
+            <div className="w-full h-0.5 bg-muted-foreground opacity-20"></div>
         </>
     );
 }

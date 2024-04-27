@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 import BreadCrumbBar from "@/components/interactive/breadcrumb/BreadCrumbBar";
 import BreadCrumbCover from "@/components/interactive/breadcrumb/BreadCrumbCover";
 import { BreadCrumb } from "@/components/interactive/breadcrumb/Breadcrumb";

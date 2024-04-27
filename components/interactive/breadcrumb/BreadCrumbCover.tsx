@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image';
 import BreadcrumbCover from '@/assets/images/breadcrumbCover.jpg';
 import Breadcrumb, { BreadCrumb } from './Breadcrumb';

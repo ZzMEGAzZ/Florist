@@ -1,29 +1,29 @@
 import BreadCrumbCover from "@/components/interactive/breadcrumb/BreadCrumbCover"
 import { BreadCrumb } from "@/components/interactive/breadcrumb/Breadcrumb"
 import Middle from "@/components/layouts/Middle"
-import CartTable from "@/components/objects/cart/CartTable"
+import BillingDetail from "@/components/objects/checkout/BillingDetail"
 
-export default function CartPage() {
+export default function Checkout() {
     const breadCrumb: BreadCrumb[] = [
         {
             name: "Home",
             link: "/"
         },
         {
-            name: "Cart",
-            link: "/cart",
+            name: "Checkout",
+            link: "/checkout",
             current: true,
         },
     ]
-    
+
     return (
         <>
             <BreadCrumbCover
-                title="Cart"
+                title="Checkout"
                 breadCrumb={breadCrumb}
             />
             <Middle X Y className="w-full h-full">
-                <CartTable />
+                <BillingDetail />
             </Middle>
         </>
     )
