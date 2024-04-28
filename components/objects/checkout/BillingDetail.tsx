@@ -47,7 +47,6 @@ const data: Payment[] = [
     },
 ]
 
-
 export default function BillingDetail() {
 
     const [checkOutStep, setCheckOutStep] = useState(0);
