@@ -108,7 +108,7 @@ export default function BillingDetail() {
                                 </div>
                                 <div className="flex flex-row justify-center px-10 bg-white">
                                     <Image
-                                        src={QrHeader}
+                                        src={Qrheader}
                                         alt="QRCode"
                                         width={200}
                                         height={50}
