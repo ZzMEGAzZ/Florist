@@ -16,6 +16,18 @@ import { useDispatch, useSelector } from "react-redux";
 import Middle from "../layouts/Middle";
 import { BadgeAlert, BadgeCheck, BadgeInfo, CheckIcon, CrossIcon } from "lucide-react";
 
+type Props = {
+    open: boolean;
+    title: string;
+    content: string;
+    status: "success" | "error" | "warning" | "info";
+    confirmText?: string;
+    cancelText?: string;
+    onConfirm?: () => void;
+    countDown?: number;
+
+}
+
 export default function AlertDialogModal() {
     const dialogModal = useSelector(dialogModalSelector);
     const dispatch = useDispatch();

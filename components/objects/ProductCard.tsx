@@ -15,12 +15,15 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Middle from "../layouts/Middle"
 import Span from "../layouts/Span"
+import { useRouter } from "next/navigation"
 
 export interface ProductCard {
+    id: number;
     img: any;
     name: string
     description: string
     price: number
+    link: string
     onClick?: () => void
     new?: boolean
     hot?: boolean
@@ -34,6 +37,7 @@ type props = {
 export function ProductCard({ product }: props) {
 
     const [hover, setHover] = useState(false)
+    const router = useRouter()
 
     return (
         <>
@@ -45,14 +49,15 @@ export function ProductCard({ product }: props) {
                     <CardContent className="w-full h-full">
                         <Middle X Y className="w-full h-full">
                             <div className="w-full h-full flex flex-col justify-center items-center space-y-2">
-                                <Button className="w-[80%] h-10 bg-primary text-white">
+                                <Button className="w-[80%] h-10 bg-primary text-white" onClick={() => router.push(product.link)}>
+
                                     Add to cart
                                 </Button>
-                                <Span X className="w-full gap-2">
+                                {/* <Span X className="w-full gap-2">
                                     <p className="text-white">share</p>
                                     <p className="text-white">compare</p>
                                     <p className="text-white">like</p>
-                                </Span>
+                                </Span> */}
                             </div>
                         </Middle>
                     </CardContent>
@@ -62,7 +67,7 @@ export function ProductCard({ product }: props) {
                     onClick={() => setHover(true)}
                 >
                     <div className="relative overflow-hidden">
-                        <Image src="https://via.placeholder.com/150" alt="Project" width={480} height={480} className="rounded-t-sm hover:scale-110 animate" />
+                        <Image src={product.img} alt="Project" width={480} height={480} className="rounded-t-sm hover:scale-110 animate h-[400px]" />
                         <div className="z-10">
                             {
                                 product.new && (
@@ -90,7 +95,7 @@ export function ProductCard({ product }: props) {
                     <CardHeader
                         onMouseEnter={() => setHover(true)}
                     >
-                        <CardTitle>{product.name}</CardTitle>
+                        <CardTitle className="text-lg">{product.name}</CardTitle>
                         <CardDescription>{product.description}</CardDescription>
                     </CardHeader>
                     <CardFooter>

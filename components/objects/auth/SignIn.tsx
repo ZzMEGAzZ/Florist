@@ -17,10 +17,12 @@ import { AuthProvider } from "@/utils/clientAuthProvider"
 import Link from "next/link"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { useRouter } from 'next/navigation'
 
 export function LoginForm() {
 
     const dispatch = useDispatch()
+    const router = useRouter()
 
     const [body, setBody] = useState<AuthLoginDto>({
         username: "",
@@ -38,7 +40,6 @@ export function LoginForm() {
                         status: "error",
                         confirmText: "OK",
                         onConfirm: () => dispatch(closeDialog()),
-                        countDown: 3000,
                     }))
                     break
                 case !body.password:
@@ -49,7 +50,7 @@ export function LoginForm() {
                         status: "error",
                         confirmText: "OK",
                         onConfirm: () => dispatch(closeDialog()),
-                        countDown: 3000,
+                        
                     }))
                     break
                 default:
@@ -59,8 +60,8 @@ export function LoginForm() {
             try {
                 const res = await login(body)
                 if (res.status === 200) {
-                    console.log(res.data.access_token)
                     AuthProvider.login(res.data.access_token)
+                    router.push('/')
                     dispatch(openDialog({
                         open: true,
                         title: "Login Success",
@@ -68,8 +69,9 @@ export function LoginForm() {
                         status: "success",
                         confirmText: "OK",
                         onConfirm: () => dispatch(closeDialog()),
-                        countDown: 3000,
+                        
                     }))
+                    
                 } else {
                     dispatch(openDialog({
                         open: true,
@@ -78,7 +80,7 @@ export function LoginForm() {
                         status: "error",
                         confirmText: "OK",
                         onConfirm: () => dispatch(closeDialog()),
-                        countDown: 3000,
+                        
                     })) 
                 }
             } catch (error) {
@@ -89,7 +91,7 @@ export function LoginForm() {
                     status: "error",
                     confirmText: "OK",
                     onConfirm: () => dispatch(closeDialog()),
-                    countDown: 3000,
+                    
                 }))
             }
         }

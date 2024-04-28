@@ -19,7 +19,7 @@ function getRequestConfig(method: string, url: string, data?: any, token?: 'useT
     if (token) {
         headers.Authorization = `Bearer ${Access_Token}`;
     }
-
+    
     return {
         method,
         url: `${process.env.NEXT_PUBLIC_API_PATH}${url}`,

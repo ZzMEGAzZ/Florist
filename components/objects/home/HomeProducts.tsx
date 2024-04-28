@@ -1,64 +1,59 @@
+'use client';
 import Middle from "@/components/layouts/Middle";
 import Span from "@/components/layouts/Span";
 import { ProductCard } from "../ProductCard";
 import { Button } from "@/components/ui/button";
+import { useCallback, useEffect, useState } from "react";
+import { Category, Product } from "@/models/product";
+import { getProducts } from "@/apis/services/productServices";
+import { Pagination } from "@/apis/dto/@type";
+import { PaginationData } from "@/models/@types";
+import { useRouter } from "next/navigation";
+import { convertImageToPath } from "@/utils/convertImageToPath";
 
-const productArray: ProductCard[] = [
-    {
-        img: 'https://via.placeholder.com/150',
-        name: 'Product 1',
-        description: 'Description',
-        price: 1000,
-    },
-    {
-        img: 'https://via.placeholder.com/150',
-        name: 'Product 2',
-        description: 'Description',
-        price: 2000,
-    },
-    {
-        img: 'https://via.placeholder.com/150',
-        name: 'Product 3',
-        description: 'Description',
-        price: 3000,
-    },
-    {
-        img: 'https://via.placeholder.com/150',
-        name: 'Product 4',
-        description: 'Description',
-        price: 4000,
-    },
-    {
-        img: 'https://via.placeholder.com/150',
-        name: 'Product 5',
-        description: 'Description',
-        price: 5000,
-    },
-    {
-        img: 'https://via.placeholder.com/150',
-        name: 'Product 6',
-        description: 'Description',
-        price: 6000,
-        hot: true
-    },
-    {
-        img: 'https://via.placeholder.com/150',
-        name: 'Product 7',
-        description: 'Description',
-        price: 6000,
-        new: true
-    },
-    {
-        img: 'https://via.placeholder.com/150',
-        name: 'Product 8',
-        description: 'Description',
-        price: 6000,
-        sale: 15
-    },
-]
-
+const productArray: ProductCard[] = []
 
 export default function HomeProducts() {
+    const [data, setData] = useState<Product[]>();
+    const router = useRouter()
+
+    const [pagination, setPagination] = useState<Pagination>({ page: 1, limit: 8 })
+    const [paginationData, setPaginationData] = useState<PaginationData>()
+
+    const getData = useCallback(
+        async () => {
+            try {
+                const response: any = await getProducts(pagination);
+                if (response.status === 200) {
+                    setPaginationData(response.data)
+                    response.data.items.map((product: Product) => {
+                        productArray.push({
+                            id: product.product_id,
+                            name: product.name,
+                            img: convertImageToPath(product.product_image),
+                            price: product.price,
+                            onClick: () => router.push(`/product/${product.category_id}/${product.product_id}`),
+                            description: product.description,
+                            link: `/product/${product.category_id}/${product.product_id}`
+                        })
+                    })
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }, [])
+
+    useEffect(() => {
+        getData()
+    }, [getData])
+
+    useEffect(() => {
+        if (paginationData) {
+            setData(paginationData.items)
+        }
+    }, [paginationData])
+
+
     return (
         <div className="w-full h-full">
             <div className="flex flex-col w-full h-full space-y-4 items-center">

@@ -26,7 +26,7 @@ export default function CoverHome({ cover }: Props) {
                     className='w-full aspect-[2/1] object-cover'
                 />
             </div>
-            <Card className={cn("z-10 w-1/2 max-w-2xl mx-auto mt-4 absolute right-[5%] bottom-1/3")}>
+            {/* <Card className={cn("z-10 w-1/2 max-w-2xl mx-auto mt-4 absolute right-[5%] bottom-1/3")}>
                 <CardHeader>
                     <CardTitle>{cover.title}</CardTitle>
                 </CardHeader>
@@ -42,7 +42,7 @@ export default function CoverHome({ cover }: Props) {
                         </Link>
                     </Button>
                 </CardFooter>
-            </Card>
+            </Card> */}
 
 
         </div>

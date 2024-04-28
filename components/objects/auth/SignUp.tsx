@@ -18,10 +18,12 @@ import { AuthRegisterDto } from "@/apis/dto/authDto"
 import { useState } from "react"
 import { closeDialog, openDialog } from "@/redux/modules/dialogModal/dialogModalSlice"
 import { register } from "@/apis/services/authServices"
+import { useRouter } from "next/navigation"
 
 export function SignUpForm() {
 
     const dispastch = useDispatch()
+    const router = useRouter()
 
     const [body, setBody] = useState<AuthRegisterDto>({
         username: "",
@@ -45,7 +47,7 @@ export function SignUpForm() {
                         status: "error",
                         confirmText: "OK",
                         onConfirm: () => dispastch(closeDialog()),
-                        countDown: 3000,
+                        
                     }))
                     break
                 case !body.last_name:
@@ -56,7 +58,7 @@ export function SignUpForm() {
                         status: "error",
                         confirmText: "OK",
                         onConfirm: () => dispastch(closeDialog()),
-                        countDown: 3000,
+                        
                     }))
                     break
                 case !body.username:
@@ -67,7 +69,7 @@ export function SignUpForm() {
                         status: "error",
                         confirmText: "OK",
                         onConfirm: () => dispastch(closeDialog()),
-                        countDown: 3000,
+                        
                     }))
                     break
                 case !body.email:
@@ -78,7 +80,7 @@ export function SignUpForm() {
                         status: "error",
                         confirmText: "OK",
                         onConfirm: () => dispastch(closeDialog()),
-                        countDown: 3000,
+                        
                     }))
                     break
                 case !body.password:
@@ -89,7 +91,7 @@ export function SignUpForm() {
                         status: "error",
                         confirmText: "OK",
                         onConfirm: () => dispastch(closeDialog()),
-                        countDown: 3000,
+                        
                     }))
                     break
                 case !confirmPassword:
@@ -100,7 +102,7 @@ export function SignUpForm() {
                         status: "error",
                         confirmText: "OK",
                         onConfirm: () => dispastch(closeDialog()),
-                        countDown: 3000,
+                        
                     }))
                     break
                 default:
@@ -115,12 +117,13 @@ export function SignUpForm() {
                     status: "error",
                     confirmText: "OK",
                     onConfirm: () => dispastch(closeDialog()),
-                    countDown: 3000,
+                    
                 }))
             } else {
                 try {
                     const res = await register(body)
                     if (res.status === 200) {
+                        router.push('/login')
                         dispastch(openDialog({
                             open: true,
                             title: "Sign Up Success",
@@ -128,7 +131,7 @@ export function SignUpForm() {
                             status: "success",
                             confirmText: "OK",
                             onConfirm: () => dispastch(closeDialog()),
-                            countDown: 3000,
+                            
                         }))
                     } else {
                         dispastch(openDialog({
@@ -138,7 +141,7 @@ export function SignUpForm() {
                             status: "error",
                             confirmText: "OK",
                             onConfirm: () => dispastch(closeDialog()),
-                            countDown: 3000,
+                            
                         }))
                     }
                 } catch (error) {
@@ -149,7 +152,7 @@ export function SignUpForm() {
                         status: "error",
                         confirmText: "OK",
                         onConfirm: () => dispastch(closeDialog()),
-                        countDown: 3000,
+                        
                     }))
                 }
             }

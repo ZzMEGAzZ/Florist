@@ -4,7 +4,7 @@ import { DialogModal } from './@types';
 export const dialogModalSlice = createSlice({
     name: 'dialogModal',
     initialState: {
-        open: true,
+        open: false,
         title: '',
         content: '',
         status: '',
@@ -19,7 +19,7 @@ export const dialogModalSlice = createSlice({
             state.confirmText = action.payload.confirmText;
             state.onConfirm = action.payload.onConfirm;
             state.cancelText = action.payload.cancelText;
-            state.countDown = action.payload.countDown;
+            state.countDown = action.payload.countDown ? action.payload.countDown : 3000;
         },
         closeDialog: (state) => {
             state.open = false;

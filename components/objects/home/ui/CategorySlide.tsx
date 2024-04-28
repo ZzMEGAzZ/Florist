@@ -4,9 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 export type CategoryCard = {
-    img: any;
-    title: string;
+    id: number;
+    name: string;
     link: string;
+    img?: any;
 }
 
 type Props = {
@@ -24,14 +25,14 @@ export default function CategorySlide({ category }: Props) {
                                 <a href={category[index].link}>
                                     <div className="w-40 h-52 rounded-lg">
 
-                                        <Image src={category[index].img} alt={category[index].title}
+                                        <Image src={category[index].img} alt={category[index].name}
                                             width={240} height={240}
                                             className="w-full h-full object-cover rounded-lg"
                                         />
 
                                     </div>
                                     <h3 className="text-md text-foreground font-bold text-center mt-2">
-                                        {category[index].title}
+                                        {category[index].name}
                                     </h3>
                                 </a>
                             </div>
