@@ -8,9 +8,9 @@ import { useQRCode } from 'next-qrcode';
 import { qrPayment } from "@/utils/qrPayment";
 import Image from "next/image";
 
-import ThaiQr from '@/assets/images/ThaiQR.jpg';
-import QrHeader from '@/assets/images/QrHeader.png';
-import ThaiQRLogo from '@/assets/images/ThaiQRLogo.png';
+import ThaiQr from '\assets\images\ThaiQR.jpg';
+import QrHeader from '\assets\images\QrHeader.png';
+import ThaiQRLogo from '\assets\images\ThaiQRLogo.png';
 
 import { floatingSep } from "@/utils/floatingSep";
 import Middle from "@/components/layouts/Middle";
