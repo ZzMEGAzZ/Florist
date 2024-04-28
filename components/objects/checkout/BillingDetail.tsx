@@ -7,9 +7,9 @@ import Address from "./Address";
 import { useQRCode } from 'next-qrcode';
 import { qrPayment } from "@/utils/qrPayment";
 import Image from "next/image";
-import thaiQr from '@/assets/images/ThaiQR.jpg';
-import qrHeader from '@/assets/images/qrHeader.png';
-import thaiQRLogo from '@/assets/images/thaiQRLogo.png';
+import ThaiQr from '@/assets/images/ThaiQR.jpg';
+import QrHeader from '@/assets/images/qrHeader.png';
+import ThaiQRLogo from '@/assets/images/thaiQRLogo.png';
 import { floatingSep } from "@/utils/floatingSep";
 import Middle from "@/components/layouts/Middle";
 import CheckoutSubmit from "./CheckoutSubmit";
@@ -95,7 +95,7 @@ export default function BillingDetail() {
                             <div className="relative w-[400px] h-[580px] z-0 border rounded-2xl">
                                 <div className="h-20 w-full bg-[#1A3761] rounded-t-2xl">
                                     <Image
-                                        src={thaiQr}
+                                        src={ThaiQr}
                                         alt="QRCode"
                                         width={200}
                                         height={80}
@@ -107,7 +107,7 @@ export default function BillingDetail() {
                                 </div>
                                 <div className="flex flex-row justify-center px-10 bg-white">
                                     <Image
-                                        src={qrHeader}
+                                        src={QrHeader}
                                         alt="QRCode"
                                         width={200}
                                         height={50}
@@ -123,7 +123,7 @@ export default function BillingDetail() {
                                     <div className="relative ">
                                         <div className="absolute w-[50px] h-[50px] top-[42%] right-[44%]">
                                             <Image
-                                                src={thaiQRLogo}
+                                                src={ThaiQRLogo}
                                                 alt="QRCode"
                                                 fill
                                                 sizes="100vw"
