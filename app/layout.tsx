@@ -7,6 +7,11 @@ import Footertail from "@/components/objects/footer/FooterTail";
 import FooterBody from "@/components/objects/footer/FooterBody";
 import NavigationBar from "@/components/objects/header/navigation/NavigationBar";
 import { headers } from 'next/headers';
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux";
+import { dialogModalSelector } from "@/redux/modules/dialogModal/dialogModalSlice";
+import Modal from "@/components/layouts/Modal";
+import AlertDialogModal from "@/components/interactive/AlertDialog";
 
 const kanit = Kanit({
   subsets: ["latin", "thai"],
@@ -30,10 +35,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const headlist = headers();
-  const fullUrl = headlist.get('referer') || '';
-  const path = fullUrl.split('/').filter((x) => x !== '');
-
   return (
     <html lang="en">
       <head>
@@ -52,30 +53,25 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {
-              !path.includes("admin") &&
-              <header className="fixed z-[999] w-full min-h-[70px]">
-                <NavigationBar />
-              </header>
+            <AlertDialogModal />
 
-            }
+            <header>
+              <NavigationBar />
+            </header>
 
 
-            <main className={`w-full ${!path.includes("admin") && 'pt-[70px]'} h-full`}>
+            <main className={`w-full h-full`}>
               <div className="h-full w-full">
                 <div className="w-full h-full">{children}</div>
               </div>
             </main>
 
-            {
-              !path.includes("admin") &&
-              <footer className="z-[999] w-full h-max bg-card border-t mt-20">
-                <div className="w-full h-full px-16">
-                  <FooterBody />
-                  <Footertail />
-                </div>
-              </footer>
-            }
+
+            <footer className="w-full h-full">         
+                <FooterBody />
+                <Footertail />
+            </footer>
+
 
 
           </ThemeProvider>

@@ -1,5 +1,7 @@
-import Link from "next/link"
+'use client'
 
+import { AuthLoginDto } from "@/apis/dto/authDto"
+import { login } from "@/apis/services/authServices"
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -8,48 +10,134 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { FloatingLabelInput } from "@/components/ui/floatingInput"
 import { Label } from "@/components/ui/label"
+import { closeDialog, openDialog } from "@/redux/modules/dialogModal/dialogModalSlice"
+import { AuthProvider } from "@/utils/clientAuthProvider"
+import Link from "next/link"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
 
 export function LoginForm() {
+
+    const dispatch = useDispatch()
+
+    const [body, setBody] = useState<AuthLoginDto>({
+        username: "",
+        password: "",
+    })
+
+    const loginHandler = async () => {
+        if (!body.username || !body.password) {
+            switch (true) {
+                case !body.username:
+                    dispatch(openDialog({
+                        open: true,
+                        title: "Login Failed",
+                        content: "Username is required",
+                        status: "error",
+                        confirmText: "OK",
+                        onConfirm: () => dispatch(closeDialog()),
+                        countDown: 3000,
+                    }))
+                    break
+                case !body.password:
+                    dispatch(openDialog({
+                        open: true,
+                        title: "Login Failed",
+                        content: "Password is required",
+                        status: "error",
+                        confirmText: "OK",
+                        onConfirm: () => dispatch(closeDialog()),
+                        countDown: 3000,
+                    }))
+                    break
+                default:
+                    break
+            }
+        } else {
+            try {
+                const res = await login(body)
+                if (res.status === 200) {
+                    console.log(res.data.access_token)
+                    AuthProvider.login(res.data.access_token)
+                    dispatch(openDialog({
+                        open: true,
+                        title: "Login Success",
+                        content: "You have successfully logged in",
+                        status: "success",
+                        confirmText: "OK",
+                        onConfirm: () => dispatch(closeDialog()),
+                        countDown: 3000,
+                    }))
+                } else {
+                    dispatch(openDialog({
+                        open: true,
+                        title: "Login Failed",
+                        content: "Invalid username or password",
+                        status: "error",
+                        confirmText: "OK",
+                        onConfirm: () => dispatch(closeDialog()),
+                        countDown: 3000,
+                    })) 
+                }
+            } catch (error) {
+                dispatch(openDialog({
+                    open: true,
+                    title: "Login Failed",
+                    content: "Invalid username or password",
+                    status: "error",
+                    confirmText: "OK",
+                    onConfirm: () => dispatch(closeDialog()),
+                    countDown: 3000,
+                }))
+            }
+        }
+    }
+
     return (
-        <Card className="mx-auto max-w-sm">
+        <Card className="w-full mx-auto max-w-md h-max">
             <CardHeader>
                 <CardTitle className="text-2xl">Login</CardTitle>
                 <CardDescription>
-                    Enter your email below to login to your account
+                    Enter your username and password to login
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="grid gap-4">
                     <div className="grid gap-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                            id="email"
-                            type="email"
-                            placeholder="m@example.com"
+                        <Label htmlFor="username">Username</Label>
+                        <FloatingLabelInput
+                            label="Username"
+                            id="username"
+                            type="text"
                             required
+                            value={body.username}
+                            onChange={(e) =>
+                                setBody({ ...body, username: e.target.value })
+                            }
                         />
                     </div>
                     <div className="grid gap-2">
-                        <div className="flex items-center">
-                            <Label htmlFor="password">Password</Label>
-                            <Link href="#" className="ml-auto inline-block text-sm underline">
-                                Forgot your password?
-                            </Link>
-                        </div>
-                        <Input id="password" type="password" required />
+                        <Label htmlFor="password">Password</Label>
+                        <FloatingLabelInput
+                            label="Password"
+                            id="password"
+                            type="password"
+                            required
+                            value={body.password}
+                            onChange={(e) =>
+                                setBody({ ...body, password: e.target.value })
+                            }
+                        />
                     </div>
-                    <Button type="submit" className="w-full">
+                    <Button className="w-full" onClick={loginHandler}>
                         Login
-                    </Button>
-                    <Button variant="outline" className="w-full">
-                        Login with Google
                     </Button>
                 </div>
                 <div className="mt-4 text-center text-sm">
-                    Don&apos;t have an account?{" "}
-                    <Link href="#" className="underline">
+                    Don't have an account?{" "}
+                    <Link href="/register" className="underline">
                         Sign up
                     </Link>
                 </div>

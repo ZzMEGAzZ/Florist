@@ -1,3 +1,4 @@
+'use client'
 import Middle from "@/components/layouts/Middle";
 import Span from "@/components/layouts/Span";
 import { ProductCard } from "../ProductCard";
@@ -118,6 +119,7 @@ const productArray: ProductCard[] = [
 export default function Products() {
 
     const setPage = () => {
+        console.log('set page')
     }
 
     return (

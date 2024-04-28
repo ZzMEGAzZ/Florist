@@ -80,9 +80,12 @@ export default function BillingDetail() {
                 checkOutStep === 0 ? (
                     <Span Y className="w-full h-full p-8">
                         <h3 className="text-2xl font-semibold">Billing Details</h3>
-                        <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-8 mt-4 p-4">
+                        <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-8 mt-4 p-4 items-start">
                             <Address />
+                            <div className="sticky top-36">
                             <PlaceOrder checkOut={() => setCheckOutStep(1)} items={data.map((item) => ({ id: item.id, name: item.id, price: item.amount, quantity: 1 }))} total={data.reduce((acc, item) => acc + item.amount, 0)} />
+                            </div>
+                            
                         </div>
                     </Span>
                 ) : (

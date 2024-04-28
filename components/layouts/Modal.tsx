@@ -10,7 +10,7 @@ const Modal = ({ children, isOpen }: Props) => {
         <>
         {
             isOpen && (
-                <Middle X Y className="fixed top-0 left-0 w-screen h-screen bg-white bg-opacity-50 backdrop-blur-xl z-[999]">
+                <Middle X Y className="fixed top-0 left-0 w-screen h-screen bg-white bg-opacity-50 backdrop-blur-xl z-[990]">
                     {children}
                 </Middle>
             )

@@ -1,7 +1,3 @@
-"use client"
-
-import { useState } from "react"
-
 type QuantityProps = {
     quantity: number
     setQuantity: (quantity: number) => void
@@ -11,7 +7,7 @@ const Quantity = ({ quantity, setQuantity }: QuantityProps) => {
     return (
         <div className="w-max rounded-md flex items-center border border-ring bg-card">
             <button
-                onClick={() => setQuantity(quantity - 1)}
+                onClick={(e) => {setQuantity(quantity - 1),e.preventDefault()}}
                 className="w-10 h-14 flex justify-center items-center rounded-md hover:bg-accent hover:text-accent-foreground"
             >
                 -

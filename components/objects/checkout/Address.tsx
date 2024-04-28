@@ -17,7 +17,7 @@ export default function Address() {
             {
                 isAddAddress ? (
                     <Span Y className="w-full h-full space-y-2">
-                        <div className="w-full h-full grid grid-cols-2 gap-4 px-2">
+                        {/* <div className="w-full h-full grid grid-cols-2 gap-4 px-2">
                             <div className="flex flex-col space-y-2">
                                 <label htmlFor="firstname">First Name</label>
                                 <FloatingLabelInput label="First Name" placeholder="First Name" />
@@ -26,11 +26,11 @@ export default function Address() {
                                 <label htmlFor="lastname">Last Name</label>
                                 <FloatingLabelInput label="Last Name" placeholder="Last Name" />
                             </div>
-                        </div>
-                        <div className="w-full flex flex-col space-y-2 px-2">
+                        </div> */}
+                        {/* <div className="w-full flex flex-col space-y-2 px-2">
                             <label htmlFor="company_name">Company Name (Optional)</label>
                             <FloatingLabelInput label="Company Name" placeholder="Company Name" />
-                        </div>
+                        </div> */}
                         <div className="w-full flex flex-col space-y-2 px-2">
                             <label htmlFor="address">Address</label>
                             <FloatingLabelInput label="Address" placeholder="Address" />
@@ -50,14 +50,14 @@ export default function Address() {
                             <div className="flex flex-col space-y-2">
                                 <label htmlFor="sub_district">Sub District</label>
                                 <FloatingLabelInput label="Sub District" placeholder="Sub District" />
-                                <ComboBoxProvince />
+                                {/* <ComboBoxProvince /> */}
                             </div>
                         </div>
                         <div className="w-full flex flex-col space-y-2 px-2">
                             <label htmlFor="zipcode">Zipcode</label>
                             <FloatingLabelInput label="Zipcode" placeholder="Zipcode" />
                         </div>
-                        <div className="w-full flex flex-col space-y-2 px-2">
+                        {/* <div className="w-full flex flex-col space-y-2 px-2">
                             <label htmlFor="phone">Phone</label>
                             <FloatingLabelInput label="Phone" placeholder="Phone" />
                         </div>
@@ -68,7 +68,7 @@ export default function Address() {
                         <div className="w-full flex flex-col space-y-2 px-2">
                             <label htmlFor="addtional">Addtional</label>
                             <FloatingLabelInput label="Addtional" placeholder="Addtional" />
-                        </div>
+                        </div> */}
                         <Button className="w-full p-4" onClick={() => setIsAddAddress(!isAddAddress)}>Save Address</Button>
                         <Button className="w-full p-4" onClick={() => setIsAddAddress(!isAddAddress)}>{isAddAddress ? "Cancel" : "Add Address"}</Button>
                     </Span>
