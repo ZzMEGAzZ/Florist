@@ -9,7 +9,7 @@ import { qrPayment } from "@/utils/qrPayment";
 import Image from "next/image";
 
 import ThaiQr from '@/assets/images/ThaiQR.jpg';
-import QrHeader from '@/assets/images/QrHeader.png';
+import Qrheader from '@/assets/images/QrHeader.png';
 import ThaiQRLogo from '@/assets/images/ThaiQRLogo.png';
 
 import { floatingSep } from "@/utils/floatingSep";
