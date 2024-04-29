@@ -6,7 +6,7 @@ export interface AddOrder {
     order_date: string;
     status: string;
     total_price: number;
-    order_items: CartItem[];
+    order_items: Item[];
 }
 
 export interface GetOrderByUserId {
@@ -21,4 +21,14 @@ export interface GetOrderByUserIdAndStatus {
 export interface EditOrderStatus {
     order_id: number;
     status: string;
+}
+
+export interface OrderItems {
+    Items: Item[];
+}
+
+export interface Item {
+    product_id: number;
+    quantity: number;
+    price_per_unit: number;
 }

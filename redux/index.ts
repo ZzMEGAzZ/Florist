@@ -6,6 +6,7 @@ import localStorage from 'redux-persist/es/storage';
 // modules
 import exampleReducer from './modules/example/exampleSlice';
 import dialogModalReducer from './modules/dialogModal/dialogModalSlice';
+import checkoutReducer from './modules/checkout/checkoutSlice';
 
 
 // config
@@ -17,6 +18,7 @@ const persistConfig = {
 export const rootReducer: any = combineReducers({
     example: exampleReducer,
     dialogModal: dialogModalReducer,
+    checkout: checkoutReducer,
 });
 
 const persistedReducer: any = persistReducer(persistConfig, rootReducer);

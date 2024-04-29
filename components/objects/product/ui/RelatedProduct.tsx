@@ -1,9 +1,10 @@
 import Span from "@/components/layouts/Span";
 import { ProductCard } from "../../ProductCard";
 import Middle from "@/components/layouts/Middle";
+import { Product } from "@/models/product";
 
 type Props = {
-    productArray: ProductCard[];
+    productArray?: Product[];
 }
 
 export default function RelatedProduct({ productArray }: Props) {
@@ -16,7 +17,7 @@ export default function RelatedProduct({ productArray }: Props) {
                     </Middle>
                     <Span X className="relative w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8 justify-items-center">
                         {
-                            productArray.map((product, index) => (
+                            productArray && productArray.map((product, index) => (
                                 <ProductCard key={index} product={product} />
                             ))
                         }

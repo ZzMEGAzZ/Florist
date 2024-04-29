@@ -7,7 +7,7 @@ import * as order from '@/apis/dto/orderDto';
 //postJson
 export async function addOrder(data: order.AddOrder) {
     try {
-        const response: any = await post('order/add_order', data, 'useToken', true);
+        const response: any = await post('orders/add_order', data, 'useToken', true);
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {
@@ -18,7 +18,7 @@ export async function addOrder(data: order.AddOrder) {
 //get
 export async function getOrderAll() {
     try {
-        const response: any = await get('order/get_order_all', undefined, 'useToken');
+        const response: any = await get('orders/get_order_all', undefined, 'useToken');
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {
@@ -28,7 +28,7 @@ export async function getOrderAll() {
 
 export async function getOrderByUserId(data: order.GetOrderByUserId) {
     try {
-        const response: any = await get('order/get_order_by_user_id', data, 'useToken');
+        const response: any = await get('orders/get_order_by_user_id', data, 'useToken');
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {
@@ -38,7 +38,7 @@ export async function getOrderByUserId(data: order.GetOrderByUserId) {
 
 export async function getOrderByUserIdAndStatus(data: order.GetOrderByUserIdAndStatus) {
     try {
-        const response: any = await get('order/get_order_by_user_id_and_status', data, 'useToken');
+        const response: any = await get('orders/get_order_by_user_id_and_status', data, 'useToken');
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {
@@ -49,7 +49,7 @@ export async function getOrderByUserIdAndStatus(data: order.GetOrderByUserIdAndS
 //put
 export async function editOrderStatus(data: order.EditOrderStatus) {
     try {
-        const response: any = await put('order/edit_order_status', data, 'useToken', true);
+        const response: any = await put('orders/edit_order_status', data, 'useToken', true);
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {

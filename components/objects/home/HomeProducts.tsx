@@ -11,11 +11,8 @@ import { PaginationData } from "@/models/@types";
 import { useRouter } from "next/navigation";
 import { convertImageToPath } from "@/utils/convertImageToPath";
 
-const productArray: ProductCard[] = []
-
 export default function HomeProducts() {
     const [data, setData] = useState<Product[]>();
-    const router = useRouter()
 
     const [pagination, setPagination] = useState<Pagination>({ page: 1, limit: 8 })
     const [paginationData, setPaginationData] = useState<PaginationData>()
@@ -23,20 +20,12 @@ export default function HomeProducts() {
     const getData = useCallback(
         async () => {
             try {
-                const response: any = await getProducts(pagination);
+                const response: any = await getProducts({
+                    page: pagination.page,
+                    limit: pagination.limit
+                });
                 if (response.status === 200) {
                     setPaginationData(response.data)
-                    response.data.items.map((product: Product) => {
-                        productArray.push({
-                            id: product.product_id,
-                            name: product.name,
-                            img: convertImageToPath(product.product_image),
-                            price: product.price,
-                            onClick: () => router.push(`/product/${product.category_id}/${product.product_id}`),
-                            description: product.description,
-                            link: `/product/${product.category_id}/${product.product_id}`
-                        })
-                    })
                 }
             } catch (error) {
                 console.log(error);
@@ -65,7 +54,7 @@ export default function HomeProducts() {
                     </Span>
                     <Span X className="relative w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8 justify-items-center">
                         {
-                            productArray.map((product, index) => (
+                            data && data.map((product, index) => (
                                 <ProductCard key={index} product={product} />
                             ))
                         }

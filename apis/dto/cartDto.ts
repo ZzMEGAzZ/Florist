@@ -1,6 +1,10 @@
 export interface AddToCart {
     user_id: number;
-    item: CartItem[];
+    items: CartItem[];
+}
+
+export interface Items {
+    Items: CartItem
 }
 
 export interface CartItem {
@@ -10,4 +14,6 @@ export interface CartItem {
 
 export interface GetCart {
     user_id: number;
+    page: number;
+    limit: number;
 }

@@ -60,7 +60,7 @@ export function LoginForm() {
             try {
                 const res = await login(body)
                 if (res.status === 200) {
-                    AuthProvider.login(res.data.access_token)
+                    AuthProvider.login(res.data.access_token,res.data.user_id)
                     router.push('/')
                     dispatch(openDialog({
                         open: true,

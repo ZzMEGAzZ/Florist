@@ -4,7 +4,7 @@ import DataTable, { objectData } from "@/components/interactive/Table";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CellContext, ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal, Trash } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
@@ -14,155 +14,91 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { getOrderByUserId } from "@/apis/services/orderServices";
+import { setDate } from "date-fns";
+import { AuthProvider } from "@/utils/clientAuthProvider";
+import { OrderItem } from "@/models/order";
 
-const data: Payment[] = [
-    {
-        id: "m5gr84i9",
-        amount: 316,
-        status: "success",
-        email: "ken99@yahoo.com",
-    },
-    {
-        id: "3u1reuv4",
-        amount: 242,
-        status: "success",
-        email: "Abe45@gmail.com",
-    },
-    {
-        id: "derv1ws0",
-        amount: 837,
-        status: "processing",
-        email: "Monserrat44@gmail.com",
-    },
-    {
-        id: "5kma53ae",
-        amount: 874,
-        status: "success",
-        email: "Silas22@gmail.com",
-    },
-    {
-        id: "bhqecj4p",
-        amount: 721,
-        status: "failed",
-        email: "carmella@hotmail.com",
-    },
-]
-
-export type Payment = {
-    id: string
-    amount: number
-    status: "pending" | "processing" | "success" | "failed"
-    email: string
+export type TableItem = {
+    id: string;
+    date: string
+    order_number: string
+    price: number
 }
 
 
 
 export default function OrderTable() {
 
-    const [selected, setSelected] = useState<string[]>([])
+    const [selected, setSelected] = useState<string[]>([]);
+    const [tableData, setTableData] = useState<TableItem[]>([]);
 
-    const columns: ColumnDef<Payment>[] = [
+    const [data, setData] = useState<OrderItem[]>([]);
+
+    const columns: ColumnDef<TableItem>[] = [
         {
-            id: "select",
-            header: ({ table }) => (
-                <Checkbox
-                    checked={
-                        table.getIsAllPageRowsSelected() ||
-                        (table.getIsSomePageRowsSelected() && "indeterminate")
-                    }
-                    onCheckedChange={(value) => { table.toggleAllPageRowsSelected(!!value), setSelected(value === true ? data.map((d) => d.id) : []) }}
-                    aria-label="Select all"
-                />
-            ),
+            accessorKey: "date",
+            header: "Date",
+            cell: ({ row }) => <div className="lowercase">{row.getValue("date")}</div>,
+        },
+        {
+            accessorKey: "order_number",
+            header: "Order_number",
             cell: ({ row }) => (
-                <Checkbox
-                    checked={row.getIsSelected()}
-                    onCheckedChange={(value) => { row.toggleSelected(!!value), console.log(row.original.id), setSelected(value === true ? [...selected, row.original.id] : selected.filter((s) => s !== row.original.id)) }}
-                    aria-label="Select row"
-                />
-            ),
-            enableSorting: false,
-            enableHiding: false,
-        },
-        {
-            accessorKey: "status",
-            header: "Status",
-            cell: ({ row }) => (
-                <div className="capitalize">{row.getValue("status")}</div>
+                <div className="capitalize">{row.getValue("order_number")}</div>
             ),
         },
         {
-            accessorKey: "email",
-            header: ({ column }) => {
-                return (
-                    <Button
-                        variant="ghost"
-                        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                    >
-                        Email
-                        <ArrowUpDown className="ml-2 h-4 w-4" />
-                    </Button>
-                )
-            },
-            cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+            accessorKey: "price",
+            header: "Price",
+            cell: ({ row }) => <div className="lowercase">{row.getValue("price")}</div>,
         },
-        {
-            accessorKey: "amount",
-            header: () => <div className="text-right">Amount</div>,
-            cell: ({ row }) => {
-                const amount = parseFloat(row.getValue("amount"))
 
-                // Format the amount as a dollar amount
-                const formatted = new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                }).format(amount)
-
-                return <div className="text-right font-medium">{formatted}</div>
-            },
-        },
-        {
-            id: "actions",
-            enableHiding: false,
-            cell: ({ row }) => {
-                const payment = row.original
-
-                return (
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="h-8 w-8 p-0">
-                                <span className="sr-only">Open menu</span>
-                                <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem
-                                onClick={() => navigator.clipboard.writeText(payment.id)}
-                            >
-                                Copy payment ID
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>View customer</DropdownMenuItem>
-                            <DropdownMenuItem>View payment details</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                )
-            },
-        },
     ]
+
+    const getData = useCallback(
+        async () => {
+            try {
+                const response: any = await getOrderByUserId({
+                    user_id: parseInt(AuthProvider.getUserID() ?? '0')
+                });
+                if (response.status === 200) {
+                    setData(response.data);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }, []);
+
+    useEffect(() => {
+        getData();
+    }, [getData]);
+
+    useEffect(() => {
+        if (data) {
+            setTableData(data.map((d) => {
+                return {
+                    id: d.order_id.toString(),
+                    date: d.order_date,
+                    order_number: d.order_id.toString(),
+                    price: d.total_price
+                }
+            }));
+        }
+    }, [data]);
 
     return (
         <div className="w-full h-full">
             <div className="w-full gap-8 p-8">
-                <DataTable data={data} columns={columns as ColumnDef<objectData>[]} filterItem={
-                    {
-                        id: "email",
-                        label: "Email",
+                <DataTable
+                    data={tableData}
+                    columns={columns as ColumnDef<objectData>[]}
+                    filterItem={{
+                        id: "order_number",
+                        label: "Order_number",
                         value: "",
-                    }
-                }
+                    }}
                 />
             </div>
         </div>

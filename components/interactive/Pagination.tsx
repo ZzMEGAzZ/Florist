@@ -33,17 +33,20 @@ export function PaginationComponent({ total, page, setPage }: Props) {
     const handlePrevious = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
+            setPage(currentPage - 1);
         }
     };
 
     const handleNext = () => {
         if (currentPage < total) {
             setCurrentPage(currentPage + 1);
+            setPage(currentPage + 1);
         }
     };
 
     const handlePageClick = (pageNumber: number) => {
         setCurrentPage(pageNumber);
+        setPage(pageNumber);
     };
 
     return (

@@ -1,4 +1,7 @@
 'use client'
+import { Pagination } from "@/apis/dto/@type"
+import { GetProducts } from "@/apis/dto/productDto"
+import { getAllCategories, getProductByName, getProducts } from "@/apis/services/productServices"
 import BreadCrumbBar from "@/components/interactive/breadcrumb/BreadCrumbBar"
 import { BreadCrumb } from "@/components/interactive/breadcrumb/Breadcrumb"
 import Middle from "@/components/layouts/Middle"
@@ -6,7 +9,10 @@ import { ProductCard } from "@/components/objects/ProductCard"
 import ProductItem from "@/components/objects/product/ProductItem"
 import RelatedProduct from "@/components/objects/product/ui/RelatedProduct"
 import { Button } from "@/components/ui/button"
+import { PaginationData } from "@/models/@types"
+import { Category, Product } from "@/models/product"
 import { useParams } from "next/navigation"
+import { useCallback, useEffect, useState } from "react"
 
 export default function CategoryItemPage() {
 
@@ -58,61 +64,85 @@ export default function CategoryItemPage() {
             current: true,
         }
     ]
+    const [data, setData] = useState<Product>();
+    const [categoryData, setCategoryData] = useState<Category[]>();
+    const [relatedData, setRelatedData] = useState<Product[]>();
 
-    const productArray: ProductCard[] = [
-        {
-            img: 'https://via.placeholder.com/150',
-            name: 'Product 1',
-            description: 'Description',
-            price: 1000,
-        },
-        {
-            img: 'https://via.placeholder.com/150',
-            name: 'Product 2',
-            description: 'Description',
-            price: 2000,
-        },
-        {
-            img: 'https://via.placeholder.com/150',
-            name: 'Product 3',
-            description: 'Description',
-            price: 3000,
-        },
-        {
-            img: 'https://via.placeholder.com/150',
-            name: 'Product 4',
-            description: 'Description',
-            price: 4000,
-        },
-    ]
+    const [pagination, setPagination] = useState<Pagination>({ page: 1, limit: 4 })
+    const [paginationData, setPaginationData] = useState<PaginationData>()
+
+    const getData = useCallback(
+        async () => {
+            try {
+                const response: any = await getProductByName({
+                    product_name: params.item
+                });
+                if (response.status === 200) {
+                    setData(response.data)
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }, [])
+
+    useEffect(() => {
+        getData()
+    } , [getData])
+
+    const getRelatedData = useCallback(
+        async (getProduct: GetProducts) => {
+            try {
+                const response: any = await getProducts({
+                    category_id: getProduct.category_id,
+                    page: pagination.page,
+                    limit: pagination.limit
+                });
+                if (response.status === 200) {
+                    setPaginationData(response.data)
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }, [])
+
+
+    useEffect(() => {
+        if (paginationData) {
+            setRelatedData(paginationData.items)
+        }
+    }, [paginationData])
+
+    const getCategoryData = useCallback(
+        async () => {
+            try {
+                const response:any = await getAllCategories();
+                if (response.status === 200) {
+                    setCategoryData(response.data)
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }, [])
+
+    useEffect(() => {
+        getCategoryData()
+    }, [getCategoryData])
+
+    useEffect(() => {
+        const findCategory = categoryData?.find((item) => item.name === params.category)
+        getRelatedData(params.category ? {category_id: findCategory?.category_id} : {}) 
+    }, [getData,pagination,categoryData,params.category])
 
     return (
         <>
             <BreadCrumbBar breadCrumb={breadCrumb} />
             <Middle X Y className="w-full h-full flex-col space-y-4">
                 <ProductItem
-                    data={
-                        {
-                            id: 1,
-                            category: "Category",
-                            name: "Product Name",
-                            description: "Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound.",
-                            price: 100,
-                            discount: 10,
-                            img: [
-                                "https://via.placeholder.com/100",
-                                "https://via.placeholder.com/150",
-                                "https://via.placeholder.com/200",
-                                "https://via.placeholder.com/250",
-                                "https://via.placeholder.com/300",
-                                "https://via.placeholder.com/350",
-                            ]
-                        }
-                    }
+                    data={data}
                 />
 
                 <RelatedProduct
-                    productArray={productArray}
+                    productArray={relatedData}
                 />
                 <Button className="w-1/3 h-12 text-lg">
                     <a href={`/product/${params.category}`} className="hover:text-accent-foreground">Show More</a>

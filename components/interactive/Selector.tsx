@@ -28,7 +28,7 @@ export function Selector({ label, options, selected }: Props) {
   return (
     <Select onValueChange={
       (value) => {
-        setSelectedValue(value);
+        setSelectedValue(options.find((option) => option.id === value)?.name || null);
         selected(value);
       }
     }>

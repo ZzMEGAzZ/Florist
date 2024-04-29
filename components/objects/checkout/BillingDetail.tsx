@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Span from "@/components/layouts/Span";
 import PlaceOrder from "./PlaceOrder";
-import { Payment } from "../cart/CartTable";
+// import { Payment } from "../cart/CartTable";
 import Address from "./Address";
 import { useQRCode } from 'next-qrcode';
 import { qrPayment } from "@/utils/qrPayment";
@@ -15,45 +15,26 @@ import ThaiQRLogo from '@/assets/images/ThaiQRLogo.png';
 import { floatingSep } from "@/utils/floatingSep";
 import Middle from "@/components/layouts/Middle";
 import CheckoutSubmit from "./CheckoutSubmit";
-
-const data: Payment[] = [
-    {
-        id: "m5gr84i9",
-        amount: 316,
-        status: "success",
-        email: "ken99@yahoo.com",
-    },
-    {
-        id: "3u1reuv4",
-        amount: 242,
-        status: "success",
-        email: "Abe45@gmail.com",
-    },
-    {
-        id: "derv1ws0",
-        amount: 837,
-        status: "processing",
-        email: "Monserrat44@gmail.com",
-    },
-    {
-        id: "5kma53ae",
-        amount: 874,
-        status: "success",
-        email: "Silas22@gmail.com",
-    },
-    {
-        id: "bhqecj4p",
-        amount: 721,
-        status: "failed",
-        email: "carmella@hotmail.com",
-    },
-]
+import { useDispatch, useSelector } from "react-redux";
+import { checkoutSelector } from "@/redux/modules/checkout/checkoutSlice";
+import { addOrder } from "@/apis/services/orderServices";
+import { AuthProvider } from "@/utils/clientAuthProvider";
+import { AddAddress } from "@/apis/dto/addressDto";
+import { closeDialog, openDialog } from "@/redux/modules/dialogModal/dialogModalSlice";
+import { useRouter } from "next/navigation";
+import moment from "moment";
 
 export default function BillingDetail() {
 
     const [checkOutStep, setCheckOutStep] = useState(0);
+    const [address, setAddress] = useState<number>(0);
     const { Canvas } = useQRCode();
-    const total = data.reduce((acc, item) => acc + item.amount, 0);
+    const checkoutItem = useSelector(checkoutSelector);
+    console.log(checkoutItem);
+    const total = checkoutItem.Items.reduce((acc, item) => acc + (item.quantity * item.price_per_unit), 0);
+    const router = useRouter();
+    const dispatch = useDispatch();
+
 
     const generateQRCode = async () => {
         try {
@@ -75,6 +56,44 @@ export default function BillingDetail() {
         }
     };
 
+    const checkout = async () => {
+        try {
+            const res = await addOrder({
+                address_id: address,
+                order_items: checkoutItem.Items.map((item) => ({
+                    product_id: item.product_id,
+                    quantity: item.quantity,
+                    price_per_unit: item.price_per_unit,
+                })) ,
+                order_date: moment().format('YYYY-MM-DD HH:mm:ss'),
+                status: 'paid',
+                total_price: total,
+                user_id: parseInt(AuthProvider.getUserID() ?? '0'),
+            });
+            if (res.status === 201) {
+                dispatch(openDialog({
+                    open: true,
+                    title: "Success",
+                    content: "Order has been placed successfully",
+                    status: "success",
+                    confirmText: "OK",
+                    onConfirm: () => dispatch(closeDialog()),
+                }))
+                router.push('/order');
+            }
+        } catch (error) {
+            dispatch(openDialog({
+                open: true,
+                title: "Error",
+                content: "Failed to place order",
+                status: "error",
+                confirmText: "OK",
+                onConfirm: () => dispatch(closeDialog()),
+            }))
+        }
+    }
+        
+
     return (
         <>
             {
@@ -82,9 +101,9 @@ export default function BillingDetail() {
                     <Span Y className="w-full h-full p-8">
                         <h3 className="text-2xl font-semibold">Billing Details</h3>
                         <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 gap-8 mt-4 p-4 items-start">
-                            <Address />
+                            <Address setCheckoutAddress={(address) => setAddress(address)}/>
                             <div className="sticky top-36">
-                            <PlaceOrder checkOut={() => setCheckOutStep(1)} items={data.map((item) => ({ id: item.id, name: item.id, price: item.amount, quantity: 1 }))} total={data.reduce((acc, item) => acc + item.amount, 0)} />
+                            <PlaceOrder checkOut={() => setCheckOutStep(1)} items={checkoutItem.Items.map((item) => ({ id: item.product_id.toString(), name: item.name, price: item.price_per_unit * item.quantity, quantity: item.quantity }))} total={total} />
                             </div>
                             
                         </div>
@@ -139,7 +158,7 @@ export default function BillingDetail() {
                                 <div className="w-full px-10 mt-5 flex flex-col space-y-1 ">
                                     <div className="w-full flex flex-row justify-between items-center">
                                         <h1 className="text-xl font-semibold">Florist Store</h1>
-                                        <h1 className="text-base font-semibold">{floatingSep(data.reduce((acc, item) => acc + item.amount, 0))}</h1>
+                                        <h1 className="text-base font-semibold">{floatingSep(checkoutItem.Items.reduce((acc, item) => acc + item.price_per_unit * item.quantity, 0))}</h1>
                                     </div>
                                     <div className="w-full flex flex-row justify-between items-center">
                                         <h1 className="text-md font-light">ชื่อบัญชี: บริษัท ฟลอริสท์ จำกัด</h1>
@@ -150,7 +169,7 @@ export default function BillingDetail() {
                         </div>
                         <Middle X Y className="w-full">
                             <div className="w-[400px]">
-                                <CheckoutSubmit attachSlip={() => {}} submit={() => setCheckOutStep(1)} items={data.map((item) => ({ id: item.id, name: item.id, price: item.amount, quantity: 1 }))} total={data.reduce((acc, item) => acc + item.amount, 0)} />
+                            <PlaceOrder checkOut={() => checkout()} items={checkoutItem.Items.map((item) => ({ id: item.product_id.toString(), name: item.name, price: item.price_per_unit * item.quantity, quantity: item.quantity }))} total={total} />
                             </div>
                         </Middle>
 

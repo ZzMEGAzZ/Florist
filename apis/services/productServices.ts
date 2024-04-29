@@ -46,9 +46,10 @@ export async function getAllProducts() {
     }
 }
 
-export async function getProducts(pagination?: Pagination, data?: product.GetProducts) {
+export async function getProducts(data: product.GetProducts) {
     try {
-        const response: any = await get(`products/get_products${pagination ? `?page=${pagination.page}&limit=${pagination.limit}` : ''}`, data);
+        console.log(data);
+        const response: any = await get(`products/get_products`, data);
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {
@@ -59,6 +60,26 @@ export async function getProducts(pagination?: Pagination, data?: product.GetPro
 export async function getAllCategories() {
     try {
         const response: any = await get('products/get_all_categories', undefined);
+        const json:any = parseJson(response);
+        return json;
+    } catch (error: any) {
+        throw error;
+    }
+}
+
+export async function getProductById(data: product.GetProductById) {
+    try {
+        const response: any = await get('products/get_product_by_id', data);
+        const json:any = parseJson(response);
+        return json;
+    } catch (error: any) {
+        throw error;
+    }
+}
+
+export async function getProductByName(data: product.GetProductByName) {
+    try {
+        const response: any = await get('products/get_product_by_name', data);
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {

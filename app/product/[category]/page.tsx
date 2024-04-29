@@ -42,7 +42,7 @@ export default function CategoryPage() {
                 {params.category}
             </h3>
             <div className="px-12">
-                <Products />
+                <Products category={params.category}/>
             </div>
         </>
     )

@@ -6,6 +6,7 @@ export interface AddAddress {
     zip_code: string;
     country: string;
     is_current: true | false;
+    address_id?: number;
 }
 
 export interface GetAddress {

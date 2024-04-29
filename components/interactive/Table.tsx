@@ -40,7 +40,7 @@ export type objectData = {
 };
 
 export type filterItem = {
-    id: string;
+    id: string | number;
     label: string;
     value: string;
 };
@@ -86,11 +86,11 @@ const DataTable: React.FC<DataTableProps> = ({ data, columns, filterItem}) => {
                         <Input
                             placeholder={`Search ${filterItem.label}`.toLowerCase()}
                             value={(table.getColumn(
-                                filterItem.id
+                                filterItem.id.toString() 
                             )?.getFilterValue() as string) ?? ""}
                             onChange={(event) =>
                                 table.getColumn(
-                                    filterItem.id
+                                    filterItem.id.toString()
                                 )?.setFilterValue(event.target.value)
                             }
                             className="max-w-sm"

@@ -7,7 +7,7 @@ import * as address from '@/apis/dto/addressDto';
 //postJson
 export async function addAddress(data: address.AddAddress) {
     try {
-        const response: any = await post('address/add_address', data, 'useToken', true);
+        const response: any = await post('addresses/add_address', data, 'useToken', true);
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {
@@ -49,7 +49,7 @@ export async function editAddressByAddressId(data: address.editAddressByAddressI
 
 export async function setCurrentAddressByAddressId(data: address.setCurrentAddressByAddressId) {
     try {
-        const response: any = await put('addresses/set_current_address_by_address_id', data, 'useToken');
+        const response: any = await put(`addresses/set_current_address_by_address_id?address_id=${data.address_id}`, {}, 'useToken');
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {

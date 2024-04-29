@@ -16,6 +16,8 @@ import { Label } from "@/components/ui/label"
 import Middle from "../layouts/Middle"
 import Span from "../layouts/Span"
 import { useRouter } from "next/navigation"
+import { Product } from "@/models/product"
+import { convertImageToPath } from "@/utils/convertImageToPath"
 
 export interface ProductCard {
     id: number;
@@ -31,7 +33,7 @@ export interface ProductCard {
 }
 
 type props = {
-    product: ProductCard
+    product: Product
 }
 
 export function ProductCard({ product }: props) {
@@ -43,13 +45,13 @@ export function ProductCard({ product }: props) {
         <>
             <div className="relative">
 
-                <Card className={`${hover ? 'opacity-100 z-20' : 'opacity-0 -z-10  animate'} absolute top-0 left-0 w-[160px] sm:w-[200px] md:w-[240px] 2xl:w-[360px] h-full bg-black bg-opacity-70 cursor-pointer`}
+                <Card className={`${hover ? 'opacity-100 z-20' : 'opacity-0 -z-10  animate'} absolute top-0 left-0 w-[200px] sm:w-[260px] md:w-[300px] lg:w-[300px] 2xl:w-[360px] aspect-[4:3] h-full bg-black bg-opacity-70 cursor-pointer`}
                     onMouseLeave={() => setHover(false)}
                 >
                     <CardContent className="w-full h-full">
                         <Middle X Y className="w-full h-full">
                             <div className="w-full h-full flex flex-col justify-center items-center space-y-2">
-                                <Button className="w-[80%] h-10 bg-primary text-white" onClick={() => router.push(product.link)}>
+                                <Button className="w-[80%] h-10 bg-primary text-white" onClick={() => router.push(`/product/${product.category_name}/${product.name}`)}>
 
                                     Add to cart
                                 </Button>
@@ -63,13 +65,13 @@ export function ProductCard({ product }: props) {
                     </CardContent>
                 </Card>
 
-                <Card className="w-[160px] sm:w-[200px] md:w-[240px] 2xl:w-[360px] cursor-pointer shadow-lg"
+                <Card className="w-[200px] sm:w-[260px] md:w-[300px] lg:w-[300px] 2xl:w-[360px] aspect-[4:3] cursor-pointer shadow-lg"
                     onClick={() => setHover(true)}
                 >
                     <div className="relative overflow-hidden">
-                        <Image src={product.img} alt="Project" width={480} height={480} className="rounded-t-sm hover:scale-110 animate h-[400px]" />
+                        <Image src={convertImageToPath(product.product_image)} alt="Project" width={480} height={480} className="rounded-t-sm hover:scale-110 animate h-[240px] sm:h-[300px] md:h-[340px] lg:h-[340px] 2xl:h-[400px] aspect-[4:3]" />
                         <div className="z-10">
-                            {
+                            {/* {
                                 product.new && (
                                     <Middle X Y className="absolute top-4 right-4 bg-primary text-white w-10 h-10 rounded-full">
                                         New
@@ -89,7 +91,7 @@ export function ProductCard({ product }: props) {
                                         - {product.sale}%
                                     </Middle>
                                 )
-                            }
+                            } */}
                         </div>
                     </div>
                     <CardHeader
@@ -100,12 +102,13 @@ export function ProductCard({ product }: props) {
                     </CardHeader>
                     <CardFooter>
                         <Label className="flex gap-4 items-center">
-                            <p className="text-md">฿ {product.price - (product.price * (product.sale ? product.sale / 100 : 0))}</p>
+                            {/* <p className="text-md">฿ {product.price - (product.price * (product.sale ? product.sale / 100 : 0))}</p>
                             {
                                 product.sale && (
                                     <p className="text-sm line-through text-muted-foreground">฿ {product.price}</p>
                                 )
-                            }
+                            } */}
+                            <p className="text-md">฿ {product.price}</p>
                         </Label>
                     </CardFooter>
                 </Card>

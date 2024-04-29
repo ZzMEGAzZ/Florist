@@ -17,9 +17,9 @@ export async function addToCart(data: cart.AddToCart) {
 }
 
 //get
-export async function getCart(pagination: Pagination, data: cart.GetCart) {
+export async function getCart(data: cart.GetCart) {
     try {
-        const response: any = await get(`cart/get_cart?page=${pagination.page}&limit=${pagination.limit}`, data, 'useToken');
+        const response: any = await get(`cart/get_cart_pagination`, data, 'useToken');
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {

@@ -1,9 +1,22 @@
+import { Pagination } from "./@type";
+
 export interface GetProducts {
-    category_id: number;
+    category_id?: number;
+    limit?: number;
+    page?: number;
+}
+
+export interface GetProductById {
+    product_id: number;
+}
+
+export interface GetProductByName {
+    product_name: string;
 }
 
 export interface AddProduct {
     category_id: number;
+    category_name: string;
     name: string;
     description: string;
     price: number;
