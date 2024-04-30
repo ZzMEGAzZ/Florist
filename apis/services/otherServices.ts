@@ -9,7 +9,7 @@ import * as other from '@/apis/dto/otherDto';
 //get
 export async function GetProductDescriptionTts(data: other.GetProductDescriptionTts) {
     try {
-        const response: any = await get('other/get_product_description_tts', data, 'useToken');
+        const response: any = await get('products/get_product_description_tts', data, 'useToken');
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {

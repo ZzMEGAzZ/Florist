@@ -24,6 +24,7 @@ export type TableItem = {
     id: string;
     date: string
     order_number: string
+    order_detail: string
     price: number
 }
 
@@ -39,19 +40,60 @@ export default function OrderTable() {
     const columns: ColumnDef<TableItem>[] = [
         {
             accessorKey: "date",
-            header: "Date",
+            header: ({ column }) => {
+                return (
+                    <Button
+                      variant="ghost"
+                      onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                      Date
+                      <ArrowUpDown className="ml-2 h-4 w-4" />
+                    </Button>
+                  )
+                },
             cell: ({ row }) => <div className="lowercase">{row.getValue("date")}</div>,
         },
         {
             accessorKey: "order_number",
-            header: "Order_number",
+            header: ({ column }) => {
+                return (
+                    <Button
+                      variant="ghost"
+                      onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                      Order Number
+                      <ArrowUpDown className="ml-2 h-4 w-4" />
+                    </Button>
+                  )
+                },
             cell: ({ row }) => (
                 <div className="capitalize">{row.getValue("order_number")}</div>
             ),
         },
         {
+            accessorKey: "order_detail",
+            header: "Order Detail",
+            cell: ({ row }) => (
+                <>
+                    {(row.getValue("order_detail") as string).split(", ").map((item: string) => {
+                        return <div>{item}</div>
+                    })}
+                </>
+            )
+        },
+        {
             accessorKey: "price",
-            header: "Price",
+            header: ({ column }) => {
+                return (
+                    <Button
+                      variant="ghost"
+                      onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    >
+                      Price
+                      <ArrowUpDown className="ml-2 h-4 w-4" />
+                    </Button>
+                  )
+                },
             cell: ({ row }) => <div className="lowercase">{row.getValue("price")}</div>,
         },
 
@@ -82,6 +124,7 @@ export default function OrderTable() {
                     id: d.order_id.toString(),
                     date: d.order_date,
                     order_number: d.order_id.toString(),
+                    order_detail: d.order_items.map((item) => item.product_details.name).join(", "),
                     price: d.total_price
                 }
             }));

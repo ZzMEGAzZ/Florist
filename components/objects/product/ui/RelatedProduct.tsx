@@ -15,7 +15,7 @@ export default function RelatedProduct({ productArray }: Props) {
                     <Middle X Y className="w-full h-full">
                         <h2 className="text-2xl">Related Products</h2>
                     </Middle>
-                    <Span X className="relative w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8 justify-items-center">
+                    <Span X className="relative w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-8 justify-items-center">
                         {
                             productArray && productArray.map((product, index) => (
                                 <ProductCard key={index} product={product} />

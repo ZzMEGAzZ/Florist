@@ -9,6 +9,7 @@ import { AuthProvider } from "@/utils/clientAuthProvider";
 import { useDispatch } from "react-redux";
 import { closeDialog, openDialog } from "@/redux/modules/dialogModal/dialogModalSlice"
 import { useRouter } from "next/navigation";
+import { convertImageToPath } from "@/utils/convertImageToPath";
 
 export interface ProductItemType {
     id: number;
@@ -22,9 +23,10 @@ export interface ProductItemType {
 
 type Props = {
     data?: Product;
+    sound: string;
 }
 
-export default function ProductItem({ data }: Props) {
+export default function ProductItem({ data, sound }: Props) {
 
     const [quantity, setQuantity] = useState(1)
     const user_id = AuthProvider.getUserID()
@@ -72,9 +74,9 @@ export default function ProductItem({ data }: Props) {
     return (
         <div>
             <div className="max-w-[1440px] h-full grid grid-cols-1 md:grid-cols-2 p-8 gap-4">
-                <ProductItemCarousel img={[data?.product_image]} />
+                <ProductItemCarousel img={[convertImageToPath(data?.product_image ?? ''),'https://via.placeholder.com/500',convertImageToPath(data?.product_image ?? ''),'https://via.placeholder.com/500',convertImageToPath(data?.product_image ?? ''),'https://via.placeholder.com/500',convertImageToPath(data?.product_image ?? ''),'https://via.placeholder.com/500']} />
                 <div className="w-full h-full">
-                    <ItemDetail data={data} />
+                    <ItemDetail sound={sound} data={data} />
                     <div className="flex gap-4">
                         <Quantity quantity={quantity} setQuantity={(quantity) => handleSetQuantity(quantity)} />
                         <Button className="w-full h-14 text-lg" onClick={() => handleAddToCart()}>Add to cart</Button>

@@ -4,6 +4,7 @@ export interface Category {
 }
 
 export interface Product {
+    product_name: any;
     product_id: number;
     category_id: number;
     category_name: string;

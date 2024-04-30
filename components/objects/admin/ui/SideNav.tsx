@@ -1,3 +1,5 @@
+'use client';
+import { usePathname } from 'next/navigation';
 import Link from "next/link"
 import {
     Bell,
@@ -17,6 +19,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { ModeToggle } from "@/components/interactive/ModeToggle"
 
 export default function SideNav() {
+    const pathName = usePathname();
+    const path = pathName.split('/').filter((x) => x !== '');
+    const currentPath = path[path.length - 1];
+    console.log(currentPath);
+
     return (
         <div className="grid min-h-screen w-full grid-rows-[auto_90px]">
             <div className="hidden border-r bg-muted/40 md:block">
@@ -30,25 +37,25 @@ export default function SideNav() {
                     <div className="flex-1">
                         <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                             <Link
-                                href="#"
-                                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                                href="/admin/dashboard"
+                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${currentPath === 'dashboard' ? 'bg-muted bg-opacity-10 text-primary' : 'text-muted-foreground'}`}
                             >
                                 <Home className="h-4 w-4" />
                                 Dashboard
                             </Link>
                             <Link
-                                href="#"
-                                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                                href="/admin/dashboard/order"
+                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${currentPath === 'order' ? 'bg-muted bg-opacity-10 text-primary' : 'text-muted-foreground'}`}
                             >
                                 <ShoppingCart className="h-4 w-4" />
                                 Orders
                             </Link>
                             <Link
-                                href="#"
-                                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+                                href="/admin/dashboard/product"
+                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${currentPath === 'product' ? 'bg-muted bg-opacity-10 text-primary' : 'text-muted-foreground'}`}
                             >
                                 <Package className="h-4 w-4" />
-                                Products{" "}
+                                Products
                             </Link>
                         </nav>
                     </div>

@@ -16,7 +16,7 @@ import { floatingSep } from "@/utils/floatingSep";
 import Middle from "@/components/layouts/Middle";
 import CheckoutSubmit from "./CheckoutSubmit";
 import { useDispatch, useSelector } from "react-redux";
-import { checkoutSelector } from "@/redux/modules/checkout/checkoutSlice";
+import { checkoutSelector, clearItems } from "@/redux/modules/checkout/checkoutSlice";
 import { addOrder } from "@/apis/services/orderServices";
 import { AuthProvider } from "@/utils/clientAuthProvider";
 import { AddAddress } from "@/apis/dto/addressDto";
@@ -79,6 +79,7 @@ export default function BillingDetail() {
                     confirmText: "OK",
                     onConfirm: () => dispatch(closeDialog()),
                 }))
+                dispatch(clearItems())
                 router.push('/order');
             }
         } catch (error) {

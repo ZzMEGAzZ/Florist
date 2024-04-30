@@ -48,7 +48,7 @@ export default function ProductItemCarousel({ img }: Props) {
                             }}
                             orientation="vertical"
                             plugins={[Autoplay({
-                                delay: 500,
+                                delay: 5000,
                                 stop: mouse,
                                 reset: !mouse,
                             })]}
@@ -61,7 +61,7 @@ export default function ProductItemCarousel({ img }: Props) {
                                         onMouseLeave={handleMouseLeave}
                                     >
                                         <Image
-                                            src={convertImageToPath(img[index])}
+                                            src={img[index]}
                                             alt={`product item ${index}`}
                                             className="w-[100px] h-[100px] object-cover rounded-lg cursor-pointer"
                                             width={100}
@@ -80,9 +80,9 @@ export default function ProductItemCarousel({ img }: Props) {
                     </div>
                     <div className="w-3/4 max-w-[350px] max-h-[500px]">
                         <Image
-                            src={convertImageToPath(img[current])}
+                            src={img[current]}
                             alt={`product item ${current}`}
-                            className="w-full h-full object-cover rounded-2xl aspect-[3/4]"
+                            className="w-[350px] object-cover rounded-2xl aspect-[3/4]"
                             width={600}
                             height={600}
                             onMouseEnter={handleMouseEnter}

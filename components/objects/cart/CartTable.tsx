@@ -158,9 +158,6 @@ export default function CartTable() {
             }
         }, [pagination]);
 
-        localStorage.setItem('cart', JSON.stringify(data));
-        localStorage.getItem('cart');
-
     useEffect(() => {
         getData();
     }, [getData]);

@@ -1,8 +1,8 @@
 {
-  "/product/[category]/[item]/page": "app/product/[category]/[item]/page.js",
-  "/cart/page": "app/cart/page.js",
-  "/order/page": "app/order/page.js",
-  "/page": "app/page.js",
   "/product/[category]/page": "app/product/[category]/page.js",
-  "/checkout/page": "app/checkout/page.js"
+  "/product/page": "app/product/page.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/dashboard/product/page": "app/admin/dashboard/product/page.js"
 }

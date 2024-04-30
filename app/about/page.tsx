@@ -10,8 +10,8 @@ export default function AboutPage() {
             link: "/"
         },
         {
-            name: "Contact",
-            link: "/contact",
+            name: "About",
+            link: "/about",
             current: true,
         },
     ]
@@ -19,7 +19,7 @@ export default function AboutPage() {
     return (
         <>
             <BreadCrumbCover
-                title="Contact"
+                title="About"
                 breadCrumb={breadCrumb}
             />
             <Middle X Y className="w-full h-full">

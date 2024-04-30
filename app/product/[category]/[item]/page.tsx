@@ -1,6 +1,7 @@
 'use client'
 import { Pagination } from "@/apis/dto/@type"
 import { GetProducts } from "@/apis/dto/productDto"
+import { GetProductDescriptionTts } from "@/apis/services/otherServices"
 import { getAllCategories, getProductByName, getProducts } from "@/apis/services/productServices"
 import BreadCrumbBar from "@/components/interactive/breadcrumb/BreadCrumbBar"
 import { BreadCrumb } from "@/components/interactive/breadcrumb/Breadcrumb"
@@ -67,7 +68,7 @@ export default function CategoryItemPage() {
     const [data, setData] = useState<Product>();
     const [categoryData, setCategoryData] = useState<Category[]>();
     const [relatedData, setRelatedData] = useState<Product[]>();
-
+    const [sound, setSound] = useState('api/products/images/product_0_audio.wav')
     const [pagination, setPagination] = useState<Pagination>({ page: 1, limit: 4 })
     const [paginationData, setPaginationData] = useState<PaginationData>()
 
@@ -79,6 +80,10 @@ export default function CategoryItemPage() {
                 });
                 if (response.status === 200) {
                     setData(response.data)
+                    const responseSound = await GetProductDescriptionTts({ product_id: response.data.product_id ?? 0 })
+                if (response.status === 200) {
+                    setSound(responseSound.data.file_path)
+                }
                 }
             } catch (error) {
                 console.log(error);
@@ -133,12 +138,14 @@ export default function CategoryItemPage() {
         getRelatedData(params.category ? {category_id: findCategory?.category_id} : {}) 
     }, [getData,pagination,categoryData,params.category])
 
+
     return (
         <>
             <BreadCrumbBar breadCrumb={breadCrumb} />
             <Middle X Y className="w-full h-full flex-col space-y-4">
                 <ProductItem
                     data={data}
+                    sound={sound}
                 />
 
                 <RelatedProduct
