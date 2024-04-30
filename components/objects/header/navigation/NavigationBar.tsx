@@ -102,16 +102,16 @@ export default function NavigationBar() {
                                 <h1>Florist</h1>
                             </div>
                             <NavigationMenu className="w-full h-full">
-                                <NavigationMenuList className="w-full h-full space-x-8">
+                                <NavigationMenuList className="w-full h-full space-x-2 md:space-x-8">
                                     <NavigationMenuItem className="w-full text-center text-card-foreground">
                                         <a href="/">
-                                            <NavigationMenuLink className="hover:text-accent-foreground">Home</NavigationMenuLink>
+                                            <NavigationMenuLink className="hover:text-accent-foreground text-sm md:text-md">Home</NavigationMenuLink>
                                         </a>
                                     </NavigationMenuItem>
                                     <NavigationMenuItem className="w-full text-center text-card-foreground">
                                         <NavigationMenuTrigger className="w-full">
                                             <NavigationMenuLink>
-                                                <a href="/product">
+                                                <a href="/product" className="text-sm md:text-md">
                                                     Product
                                                 </a>
                                             </NavigationMenuLink>
@@ -139,17 +139,17 @@ export default function NavigationBar() {
                                     </NavigationMenuItem>
                                     <NavigationMenuItem className="w-full text-center text-card-foreground">
                                         <a href="/about">
-                                            <NavigationMenuLink className="hover:text-accent-foreground">About</NavigationMenuLink>
+                                            <NavigationMenuLink className="hover:text-accent-foreground text-sm md:text-md">About</NavigationMenuLink>
                                         </a>
                                     </NavigationMenuItem>
                                     <NavigationMenuItem className="w-full text-center text-card-foreground">
                                         <a href="/contact">
-                                            <NavigationMenuLink className="hover:text-accent-foreground">Contact</NavigationMenuLink>
+                                            <NavigationMenuLink className="hover:text-accent-foreground text-sm md:text-md">Contact</NavigationMenuLink>
                                         </a>
                                     </NavigationMenuItem>
                                 </NavigationMenuList>
                             </NavigationMenu>
-                            <div className="w-full flex items-center justify-end space-x-8">
+                            <div className="w-full flex items-center justify-end space-x-2 md:space-x-8">
                                 {
                                     AuthProvider.getAccessToken() ? (
                                         <>
@@ -175,12 +175,12 @@ export default function NavigationBar() {
                                         (
                                             <>
                                                 <div className="text-card-foreground">
-                                                    <a href="/login">
+                                                    <a href="/login" className="text-sm md:text-md">
                                                         Login
                                                     </a>
                                                 </div>
                                                 <div className="text-card-foreground">
-                                                    <a href="/register">
+                                                    <a href="/register" className="text-sm md:text-md">
                                                         Register
                                                     </a>
                                                 </div>
