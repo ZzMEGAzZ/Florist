@@ -29,11 +29,11 @@ export type TableItem = {
     user_id: string;
     order_detail: string
     price: number
-    status: 'paid' | 'shiping' | 'delivered' | 'canceled'
+    status: 'paid' | 'shipping' | 'delivered' | 'canceled'
 }
 
 interface Status {
-    status: 'paid' | 'shiping' | 'delivered' | 'canceled'
+    status: 'paid' | 'shipping' | 'delivered' | 'canceled'
 }
 
 export default function AdminOrder() {
@@ -43,7 +43,7 @@ export default function AdminOrder() {
     const [orderId, setOrderId] = useState<string>("");
     const dispatch = useDispatch();
 
-    const updateStatus = async (status: 'paid' | 'shiping' | 'delivered' | 'canceled') => {
+    const updateStatus = async (status: 'paid' | 'shipping' | 'delivered' | 'canceled') => {
         try {
             const response: any = await editOrderStatus({
                 order_id: parseInt(orderId),
@@ -182,10 +182,10 @@ export default function AdminOrder() {
                         py-1
                         rounded-full
                         text-xs
-                        ${row.getValue("status") === "paid" ? "bg-SubPrimary-light text-white" : ""}
-                        ${row.getValue("status") === "shiping" ? "bg-Warning-light text-white" : ""}
-                        ${row.getValue("status") === "delivered" ? "bg-Success-light text-white" : ""}
-                        ${row.getValue("status") === "canceled" ? "bg-Danger-light text-white" : ""}
+                        ${row.getValue("status") === "paid" ? "bg-SubPrimary text-white" : ""}
+                        ${row.getValue("status") === "shipping" ? "bg-Warning text-white" : ""}
+                        ${row.getValue("status") === "delivered" ? "bg-Success text-white" : ""}
+                        ${row.getValue("status") === "canceled" ? "bg-Danger text-white" : ""}
                     `}>
                         {row.getValue("status")}
                     </Span>
@@ -243,7 +243,7 @@ export default function AdminOrder() {
                                                 { id: "canceled", name: "Canceled" },
                                             ]
                                         }
-                                        selected={(value) => updateStatus(value as ('paid' | 'shiping' | 'delivered' | 'canceled'))}
+                                        selected={(value) => updateStatus(value as ('paid' | 'shipping' | 'delivered' | 'canceled'))}
                                     />
                                 </CardContent>
                             </Card>

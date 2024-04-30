@@ -74,7 +74,7 @@ export async function get(url: string, params?: any, token?: 'useToken') {
 //     return sendRequest(config);
 // }
 
-export async function post(url: string, data?: any, token?: 'useToken', isJson?: true) {
+export async function post(url: string, data?: any, token?: 'useToken', isJson?: boolean) {
     if (isJson) {
         const config = getRequestConfig('post', url, data, token, true);
         return sendRequest(config);
@@ -95,7 +95,18 @@ export async function deleteRequest(url: string, data?: any, token?: 'useToken')
     return sendRequest(config);
 }
 
-export async function put(url: string, data?: any, token?: 'useToken', isJson?: true){
-    const config = getRequestConfig('put', url, data, token, isJson)
-    return sendRequest(config);
+export async function put(url: string, data?: any, token?: 'useToken', isJson?: boolean){
+    if (isJson) {
+        const config = getRequestConfig('put', url, data, token, true);
+        return sendRequest(config);
+    } else {
+        const formData = new FormData();
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+                formData.append(key, data[key]);
+            }
+        }
+        const config = getRequestConfig('put', url, formData, token, false);
+        return sendRequest(config);
+    }
 }
