@@ -2,7 +2,7 @@ export interface OrderItem {
     user_id: number;
     address_id: number;
     order_date: string;
-    status: string;
+    status: 'paid' | 'shiping' | 'delivered' | 'canceled'
     total_price: number;
     order_items: Item[];
     order_id: number;

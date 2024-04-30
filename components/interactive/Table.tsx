@@ -144,7 +144,7 @@ const DataTable: React.FC<DataTableProps> = ({ data, columns, filterItem}) => {
                             </TableRow>
                         ))}
                     </TableHeader>
-                    <TableBody>
+                    <TableBody className="bg-card">
                         {table.getRowModel().rows?.length ? (
                             table.getRowModel().rows.map((row) => (
                                 <TableRow

@@ -13,13 +13,13 @@ const BarChart = ({ data }: Props) => (
         data={data.datasets}
         keys={data.keys}
         indexBy={data.indexBy}  
-        margin={{ top: 10, right: 40, bottom: 150, left: 60 }}
+        margin={{ top: 10, right: 40, bottom: 50, left: 60 }}
         padding={0.3}
         innerPadding={0}
         groupMode="grouped"
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}
-        colors={{ scheme: 'purple_red' }}
+        colors={{ datum: 'data.color'}}
         colorBy={data.colorBy}
         defs={[
             {
@@ -83,7 +83,7 @@ const BarChart = ({ data }: Props) => (
         }}
         tooltip={({value, label}) => (
             <div className='w-max h-max bg-white border rounded p-2'>
-                {label}: {value} คน
+                {label}: {value} บาท
             </div>
         )}
         motionConfig="gentle"

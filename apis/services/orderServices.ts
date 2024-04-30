@@ -18,7 +18,7 @@ export async function addOrder(data: order.AddOrder) {
 //get
 export async function getOrderAll() {
     try {
-        const response: any = await get('orders/get_order_all', undefined, 'useToken');
+        const response: any = await get('orders/get_orders_all', undefined, 'useToken');
         const json:any = parseJson(response);
         return json;
     } catch (error: any) {

@@ -1,8 +1,5 @@
 {
-  "/product/[category]/page": "app/product/[category]/page.js",
-  "/product/page": "app/product/page.js",
   "/admin/login/page": "app/admin/login/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/admin/dashboard/product/page": "app/admin/dashboard/product/page.js"
+  "/admin/dashboard/order/page": "app/admin/dashboard/order/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js"
 }

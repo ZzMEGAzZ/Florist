@@ -32,10 +32,10 @@ export function Selector({ label, options, selected }: Props) {
         selected(value);
       }
     }>
-      <SelectTrigger className="w-full">
+      <SelectTrigger className="w-full z-[1000]">
         <SelectValue placeholder="Select">{selectedValue || label}</SelectValue>
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="z-[1000]">
         <SelectGroup>
           {options.map((option) => (
             <SelectItem

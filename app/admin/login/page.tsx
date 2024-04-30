@@ -1,11 +1,11 @@
 
 import Middle from "@/components/layouts/Middle"
-import { LoginForm } from "@/components/objects/auth/SignIn"
+import { AdminLoginForm } from "@/components/objects/admin/login/AdminLogin"
 
 export default function LoginPage() {
     return (
         <Middle X Y className="w-full h-screen">
-            <LoginForm />
+            <AdminLoginForm />
         </Middle>
     )
 }
