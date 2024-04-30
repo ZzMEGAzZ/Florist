@@ -42,6 +42,7 @@ export default function ProductItem({ data, sound }: Props) {
     }
 
     const handleAddToCart = async () => {
+        if (AuthProvider.getAccessToken()) {
         try {
             const response = await addToCart({
                 user_id: parseInt(user_id ?? "0"),
@@ -69,7 +70,10 @@ export default function ProductItem({ data, sound }: Props) {
                 onConfirm: () => dispatch(closeDialog()),
             }))
         }
+    } else {
+        router.push("/login")
     }
+}
 
     return (
         <div>
