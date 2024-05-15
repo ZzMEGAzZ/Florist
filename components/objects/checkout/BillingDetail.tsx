@@ -9,7 +9,7 @@ import { qrPayment } from "@/utils/qrPayment";
 import Image from "next/image";
 
 import ThaiQr from '@/assets/images/ThaiQR.jpg';
-import qrheader from '@/assets/images/QrHeader.png';
+import Qrheader from '@/assets/images/qrHeader.png';
 import ThaiQRLogo from '@/assets/images/ThaiQRLogo.png';
 
 import { floatingSep } from "@/utils/floatingSep";
@@ -128,7 +128,7 @@ export default function BillingDetail() {
                                 </div>
                                 <div className="flex flex-row justify-center px-10 bg-white">
                                     <Image
-                                        src={qrheader}
+                                        src={Qrheader}
                                         alt="QRCode"
                                         width={200}
                                         height={50}
